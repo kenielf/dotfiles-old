@@ -1,0 +1,57 @@
+/insp3442-arch/LightDM/keys.conf
+/insp3442-arch/rEFInd/keys/
+/insp3442-arch/rEFInd/vars/
+/insp3442-arch/rEFInd/BOOT.CSV
+/insp3442-arch/rEFInd/refind_x64.efi
+/insp3442-arch/.config/cef_user_data/
+/insp3442-arch/.config/chromium/
+/insp3442-arch/.config/Code\ -\ OSS/Backups/
+/insp3442-arch/.config/Code\ -\ OSS/blob_storage/
+/insp3442-arch/.config/Code\ -\ OSS/Cache/
+/insp3442-arch/.config/Code\ -\ OSS/CachedData/
+/insp3442-arch/.config/Code\ -\ OSS/CachedExtensions/
+/insp3442-arch/.config/Code\ -\ OSS/CachedExtensionVSIXs/
+/insp3442-arch/.config/Code\ -\ OSS/Code\ Cache/
+/insp3442-arch/.config/Code\ -\ OSS/Crashpad/
+/insp3442-arch/.config/Code\ -\ OSS/Dictionaries/
+/insp3442-arch/.config/Code\ -\ OSS/GPUCache/
+/insp3442-arch/.config/Code\ -\ OSS/Local\ Storage/
+/insp3442-arch/.config/Code\ -\ OSS/logs/
+/insp3442-arch/.config/Code\ -\ OSS/Service\ Worker/
+/insp3442-arch/.config/Code\ -\ OSS/Session\ Storage/
+/insp3442-arch/.config/Code\ -\ OSS/User/History/
+/insp3442-arch/.config/Code\ -\ OSS/User/workspaceStorage/
+/insp3442-arch/.config/Code\ -\ OSS/Cookies
+/insp3442-arch/.config/Code\ -\ OSS/Cookies-journal
+/insp3442-arch/.config/Code\ -\ OSS/languagepacks.json
+/insp3442-arch/.config/Code\ -\ OSS/machineid
+/insp3442-arch/.config/Code\ -\ OSS/Network\ Persistent\ State
+/insp3442-arch/.config/Code\ -\ OSS/Preferences
+/insp3442-arch/.config/Code\ -\ OSS/QuotaManager
+/insp3442-arch/.config/Code\ -\ OSS/QuotaManager-journal
+/insp3442-arch/.config/Code\ -\ OSS/TransportSecurity
+/insp3442-arch/.config/dconf/
+/insp3442-arch/.config/discord/
+/insp3442-arch/.config/draw.io/
+/insp3442-arch/.config/fcitx/dbus/
+/insp3442-arch/.config/GIMP/
+/insp3442-arch/.config/ibus/
+/insp3442-arch/.config/JetBrains/
+/insp3442-arch/.config/kdeconnect/
+/insp3442-arch/.config/keepassxc/
+/insp3442-arch/.config/mozc/
+/insp3442-arch/.config/mpd/database
+/insp3442-arch/.config/mpd/log
+/insp3442-arch/.config/mpd/sticker.sql
+/insp3442-arch/.config/obsidian/
+/insp3442-arch/.config/pulse/
+/insp3442-arch/.config/qBittorrent/qBittorrent-data.conf
+/insp3442-arch/.config/setzer/*==.pickle
+/insp3442-arch/.config/setzer/workspace.pickle
+/insp3442-arch/.config/StardewValley/
+/insp3442-arch/.config/unity3d/Ludic/
+/insp3442-arch/.config/VirtualBox/
+/insp3442-arch/.config/QtProject.conf
+/insp3442-arch/.config/zoomus.conf
+/insp3442-arch/.config/xpad/content-*
+/insp3442-arch/.config/xpad/info-*
