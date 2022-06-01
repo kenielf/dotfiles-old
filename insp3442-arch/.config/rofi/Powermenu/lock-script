@@ -1,0 +1,15 @@
+#!/bin/bash
+set +x
+dunstctl set-paused true
+#MEDIA_STATUS=$(mpc status | grep -oP "\[playing\]")
+#mpc pause
+
+#i3lock -t -i "$(grep -P -o '(?<=file=).*' ~/.config/nitrogen/bg-saved.cfg)" -n
+/home/$USER/.config/rofi/Powermenu/betterlockscreen -l 
+
+
+dunstctl set-paused false
+
+#if [ "$MEDIA_STATUS" == "[playing]" ]; then
+#  mpc play
+#fi

@@ -1,0 +1,34 @@
+###--- NORD THEME ---###
+# Nord - Polar Night
+set $nord00 #2e3440
+set $nord01 #3b4252
+set $nord02 #434c5e
+set $nord03 #4c566a
+# Nord - Snow Storm
+set $nord04 #d8dee9
+set $nord05 #e5e9f0
+set $nord06 #eceff4
+# Nord - Frost
+set $nord07 #8fbcbb
+set $nord08 #88c0d0
+set $nord09 #81a1c1
+set $nord10 #5e81ac
+# Nord - Aurora
+set $nord11 #bf616a
+set $nord12 #d08770
+set $nord13 #ebcb8b
+set $nord14 #a3be8c
+set $nord15 #b48ead
+
+###--- BACKGROUND COLOR ---###
+set $bg_color "#2e3440"
+#
+exec_always --no-startup-id hsetroot -solid $bg_color &
+#exec_always --no-startup-id feh --bg-fill $wallpaper &
+
+###--- I3 COLORS ---###
+#class                  border / background / text / indicator
+client.focused          $nord08 $nord10 $nord06 $nord08
+client.unfocused        $nord03 $nord02 $nord03 $nord08
+client.focused_inactive $nord03 $nord02 $nord03 $nord08
+client.urgent           $nord10 $nord10 $nord06 $nord08

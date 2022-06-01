@@ -1,0 +1,34 @@
+/*
+* ░█▀▄░█▀█░█▀▀░▀█▀░░░█▀█░█▀█░█▀▄░█▀▄░░░█▀▀░█▀█░█░░░█▀█░█▀▄
+* ░█▀▄░█░█░█▀▀░░█░░░░█░█░█░█░█▀▄░█░█░░░█░░░█░█░█░░░█░█░█▀▄
+* ░▀░▀░▀▀▀░▀░░░▀▀▀░░░▀░▀░▀▀▀░▀░▀░▀▀░░░░▀▀▀░▀▀▀░▀▀▀░▀▀▀░▀░▀
+* This needs to be imported to work
+*/
+
+* {
+	/* Polar Night */ 
+	nord00:		#2e3440;
+	nord01:		#3b4252;
+	nord02:		#434c5e;
+	nord03:		#4c566a;
+	/* Snow Storm */
+	nord04:		#d8dee9;
+	nord05:		#e5e9f0;
+	nord06:		#eceff4;
+	/* Frost */
+	nord07:		#8fbcbb;
+	nord08:		#88c0d0;
+	nord09:		#81a1c1;
+	nord10:		#5e81ac;
+	/* Aurora */
+	nord11:		#bf616a;
+	nord12:		#d08770;
+	nord13:		#ebcb8b;
+	nord14:		#a3be8c;
+	nord15:		#b48ead;
+
+	/* Usable by Programs */
+	bg-color:	@nord01;
+	fg-color:	@nord05;
+	sel-color:	@nord03;
+}

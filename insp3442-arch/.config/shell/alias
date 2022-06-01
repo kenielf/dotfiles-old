@@ -1,0 +1,91 @@
+# vim: syntax=sh
+###--- ALIASES ---###
+# Alias aliases
+alias_path="$HOME/.config/shell/alias"
+alias alias-edit="\$EDITOR \$alias_path"
+alias alias-src="source \$alias_path"
+
+# I3wm aliases
+i3_path="$HOME/.config/i3"
+alias i3-edit="\$EDITOR $i3_path"
+alias i3-src="i3-msg restart &>/dev/null"
+
+# Linux 
+alias rmdir="rm -rfv"
+alias mkdir="mkdir -pv"
+function mkcd() {
+    mkdir -pv $1
+    cd $1
+}
+alias mksl="ln -sf"
+alias path='echo -e ${PATH//:/\\n}'
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias k="kill -s9"
+alias ka="killall -s9"
+alias df='df -H'
+alias du='du -ch'
+alias l="ls -h --group-directories-first --color=auto"
+alias ls="ls -A --group-directories-first --color=auto"
+alias la="ls -Alh --group-directories-first --color=auto"
+alias ..='cd ..'
+alias ..2='cd ../..'
+alias ..3='cd ../../..'
+alias sclip="xclip -sel c"
+alias gclip="xclip -sel c -o"
+alias stree="tree -FI '.git'"
+alias astree="tree -aFI '.git'"
+alias rehist="eval \"\$(cat $HISTFILE | sort | uniq -c | sort -nr | fzf --reverse --preview 'man {2}' | sed -E 's/    [0-9]+ //g')\""
+alias calendar='dunstify -i "/usr/share/icons/Flat-Remix-Blue-Dark/apps/scalable/calendar.svg" "$(echo "$(cal)" | head -n1)" "$(echo "$(cal)" | tail -n7)"'
+function tclear() {
+    [ -n "$*" ] && command clear "$@" || \
+    [ -n "$KITTY_PID" ] && command clear -T xterm || \
+}
+
+# Git
+alias gitcl="git clone"
+alias gitc1="git clone --depth 1"
+alias gita="git add"
+alias gitcm="git commit -m"
+alias gits="git status"
+alias gitd="git diff"
+alias gitcs="git commit -S -m"
+alias gitpu="git push -u"
+alias gitck="git checkout"
+alias gitroot="cd \$(git root)"
+function gitpath() {
+    gitp=$(git rev-parse --show-toplevel | sed -e "s/\//\\\\\//g") || exit 1
+    realpath "$1" | sed -s "s\$gitp\///g"
+}
+
+# Arch
+alias listpkg="pacman -Qq | fzf --multi --reverse --preview 'pacman -Qi {1}' --preview-window=70%,wrap"
+alias install="yay -S"
+alias update="yay -Syyuu"
+alias fupdate="yay -Syyuu --noconfirm"
+alias pkgcache="yay -Scc"
+
+# Development
+alias py="python3"
+alias pyvenv="python -m venv env"
+alias pyenv="source ./env/bin/activate"
+alias e="\$EDITOR"
+alias se="sudo \$EDITOR"
+
+# Compression
+# Compression with tar should be:
+# tarc file.tar folder/
+alias tarc="tar -cf"
+alias tard="tar -xf"
+# Compression with xz should be:
+# xzc file.tar
+alias xzc="xz -zevT0 -9"
+alias xzd="xz -devT0"
+
+# Display
+alias fix-display='xrandr --output "$(xrandr | grep -oP "^([\w\-]+)(?=\sconnected\sprimary)")" --set "scaling mode" "Full" --mode $(xrandr | grep -oP "(?<=^\s{3})(\d+x\d+)" | head -n1)'
+alias toggle-compositor='if [ $(pgrep -x "picom") ]; then killall -s15 picom; else setsid -f $HOME/.config/picom/picom.sh &>/dev/null; fi'
+
+# Audio
+alias toggle-loopback='if [ $(pgrep -x "pw-loopback") ]; then killall -s15 pw-loopback; else setsid -f pw-loopback; fi'

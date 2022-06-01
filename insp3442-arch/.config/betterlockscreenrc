@@ -1,0 +1,39 @@
+# ~/.config/betterlockscreenrc
+# ░█▀▄░█▀▀░▀█▀░▀█▀░█▀▀░█▀▄░█░░░█▀█░█▀▀░█░█░█▀▀░█▀▀░█▀▄░█▀▀░█▀▀░█▀█
+# ░█▀▄░█▀▀░░█░░░█░░█▀▀░█▀▄░█░░░█░█░█░░░█▀▄░▀▀█░█░░░█▀▄░█▀▀░█▀▀░█░█
+# ░▀▀░░▀▀▀░░▀░░░▀░░▀▀▀░▀░▀░▀▀▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀▀▀░▀░▀
+
+
+###--- COLORS ---###
+# Loginbox
+bgcolor=2e3440ff			# Background Color
+loginbox=000000FF			# No Apparent Effect
+loginshadow=000000FF			# No Apparent Effect
+separatorcolor=00000000			# No Apparent Effect
+
+# Text
+font="FiraCode Nerd Font"		# Font
+locktext="Insert your Password"		# Greeter Text
+time_format="%H:%M"			# Clock Format
+
+# Text Color
+timecolor=eceff4ff			# Clock Foreground Color
+greetercolor=eceff4ff			# Greeter Foreground Color
+layoutcolor=434c5eff			# Keyboard Layout Foreground Color
+verifcolor=5e81acff			# Password Correct Top Text Foreground Color
+wrongcolor=b48eadff			# Password Incorrect Top Text Foreground Color
+modifcolor=b48eadff			# Password Incorrect Bottom Text Foreground Color (Input Modifiers)
+
+# Ring General
+ringcolor=434c5eff			# Ring Background Color when Typing
+insidecolor=434c5eff			# Ring Center Color
+keyhlcolor=5e81acff			# Ring Foreground when Typing
+bshlcolor=b48eadff			# Ring Foreground when Backspacing
+
+# Ring Correct Password
+ringvercolor=a3be8cff			# Ring Background Color when Password is Correct
+insidevercolor=434c5eff 		# Ring Center Color when Password is Correct
+
+# Ring Wrong Password
+ringwrongcolor=b48eadff			# Ring Background Color when Password is Wrong
+insidewrongcolor=434c5eff		# Ring Center Color when Password is Wrong

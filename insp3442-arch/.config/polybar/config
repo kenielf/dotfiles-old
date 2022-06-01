@@ -1,0 +1,465 @@
+; ============================================================ 
+; ░█▀█░█▀█░█░░░█░█░█▀▄░█▀█░█▀▄
+; ░█▀▀░█░█░█░░░░█░░█▀▄░█▀█░█▀▄
+; ░▀░░░▀▀▀░▀▀▀░░▀░░▀▀░░▀░▀░▀░▀
+; Kenielf's Polybar Configuration
+; To learn more, go to "https://github.com/polybar/polybar"
+; ============================================================
+
+; ---------- 
+; Colors
+; ---------- 
+
+[colors]
+;background = ${xrdb:color0:#222}
+background = #222
+background-alt = #444
+;foreground = ${xrdb:color7:#222}
+foreground = #dfdfdf
+foreground-alt = #555
+primary = #ffb52a
+secondary = #e60053
+alert = #bd2c40
+
+; Nord
+; Polar Night
+nord00 = #2e3440
+nord01 = #3b4252
+nord02 = #434c5e
+nord03 = #4c566a
+; Snow Storm
+nord04 = #d8dee9
+nord05 = #e5e9f0
+nord06 = #eceff4
+; Frost
+nord07 = #8fbcbb
+nord08 = #88c0d0
+nord09 = #81a1c1
+nord10 = #5e81ac
+; Aurora
+nord11 = #bf616a
+nord12 = #d08770
+nord13 = #ebcb8b
+nord14 = #a3be8c
+nord15 = #b48ead
+
+; Transparent
+transparent = #00000000
+
+; ---------- 
+; Bars
+; ---------- 
+
+[bar/example]
+;monitor = ${env:MONITOR:HDMI-1}
+width = 100%
+height = 27
+;offset-x = 1%
+;offset-y = 1%
+radius = 6.0
+fixed-center = false
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+border-size = 4
+border-color = #00000000
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = fixed:pixelsize=10;1
+font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-2 = siji:pixelsize=10;1
+
+modules-left = bspwm i3
+modules-center = mpd
+modules-right = filesystem xbacklight alsa pulseaudio xkeyboard memory cpu wlan eth battery temperature date powermenu
+
+tray-position = right
+tray-padding = 2
+;tray-background = #0063ff
+
+;wm-restack = bspwm
+;wm-restack = i3
+
+;override-redirect = true
+
+;scroll-up = bspwm-desknext
+;scroll-down = bspwm-deskprev
+
+;scroll-up = i3wm-wsnext
+;scroll-down = i3wm-wsprev
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[bar/bsp]
+; Settings
+width = 100%
+height = 20
+bottom = false
+dock = false
+radius = 0
+fixed-center = true
+wm-restack = bspwm
+override-redirect = true
+scroll-up = bspwm-desknext
+scroll-down = bspwm-deskprev
+cursor-click = pointer
+cursor-scroll = ns-resize
+; Colors
+background = ${colors.nord01}
+foreground = ${colors.nord05}
+; Line
+line-size = 0
+line-color = ${colors.transparent}
+; Border
+border-size = 0
+border-color = ${colors.transparent}
+; Padding
+padding-left = 1
+padding-right = 1
+module-margin-left = 1
+module-margin-right = 1
+; Font
+font-0 = FiraCode Nerd Font:style=Regular:pixelsize=10;2
+font-1 = unifont:fontformat=truetype:pixelsize=10;2:antialias=false;0
+font-2 = Noto Sans CJK JP:pixelsize=10;2:antialias=true;0
+font-3 = Font Awesome 6 Free:pixelsize=10;2
+font-4 = Font Awesome 6 Free Solid:pixelsize=10;2
+font-5 = Font Awesome 6 Brands:pixelsize=10;2
+font-6 = NotoEmoji Nerd Font Mono:style=Book:pixelsize=10;2
+font-7 = DejaVu Sans Mono:style=Book:pixelsize=10;2
+; Modules
+modules-left = arch time backlight bspwm 
+modules-center = xwindow
+modules-right = pulseaudio battery date
+; Tray
+tray-detached = false
+tray-position = right
+tray-offset-x = 0
+tray-offset-y = 0
+tray-maxsize = 16
+tray-padding = 0
+tray-scale = 1.0
+tray-background = ${colors.nord01}
+; Separator
+separator = "|"
+separator-padding = 0
+separator-foreground = ${colors.nord03}
+
+[bar/i3]
+; Settings
+width = 100%
+height = 20
+bottom = false
+dock = false
+radius = 0
+fixed-center = true
+; wm-restack = i3
+override-redirect = true
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+cursor-click = pointer
+cursor-scroll = ns-resize
+; Colors
+background = ${colors.nord01}
+foreground = ${colors.nord05}
+; Line
+line-size = 0
+line-color = ${colors.transparent}
+; Border
+border-size = 0
+border-color = ${colors.transparent}
+; Padding
+padding-left = 1
+padding-right = 1
+module-margin-left = 1
+module-margin-right = 1
+; Font
+font-0 = FiraCode Nerd Font:style=Regular:pixelsize=10;2
+font-1 = unifont:fontformat=truetype:pixelsize=10;2:antialias=false;0
+font-2 = Noto Sans CJK JP:pixelsize=10;2:antialias=true;0
+font-3 = Font Awesome 6 Free:pixelsize=10;2
+font-4 = Font Awesome 6 Free Solid:pixelsize=10;2
+font-5 = Font Awesome 6 Brands:pixelsize=10;2
+font-6 = NotoEmoji Nerd Font Mono:style=Book:pixelsize=10;2
+font-7 = VL Gothic:style=Regular:pixelsize=10;2
+font-8 = DejaVu Sans Mono:style=Book:pixelsize=10;2
+; Modules
+modules-left = arch time backlight i3
+modules-center = xwindow
+modules-right = keylang nm-wifi nm-network pulseaudio battery date
+; Tray
+; tray-detached = false
+; tray-position = right
+; tray-offset-x = 0
+; tray-offset-y = 0
+; tray-maxsize = 16
+; tray-padding = 0
+; tray-scale = 1.0
+; tray-background = ${colors.nord01}
+; Separator
+separator = "|"
+separator-padding = 0
+separator-foreground = ${colors.nord03}
+
+; ---------- 
+; Modules
+; ---------- 
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:40:...%
+
+
+[module/arch]
+type = custom/text
+content = "  "
+content-foreground = ${colors.nord05}
+content-padding = 
+
+
+[module/keylang]
+type = custom/script
+exec = ~/.config/polybar/scripts/fcitx.sh
+tail = false
+interval = 0.25
+label = " %output%"
+label-foreground = ${colors.nord05}
+format-prefix = " "
+format-prefix-foreground = ${colors.nord03}
+click-left = fcitx5-remote -t
+click-right = fcitx5-configtool
+
+
+[module/bspwm]
+type = internal/bspwm
+
+label-focused = %index%
+label-focused-background = ${colors.background-alt}
+label-focused-underline= ${colors.primary}
+label-focused-padding = 2
+
+label-occupied = %index%
+label-occupied-padding = 2
+
+label-urgent = %index%!
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
+
+label-empty = %index%
+label-empty-foreground = ${colors.foreground-alt}
+label-empty-padding = 2
+
+; Separator in between workspaces
+; label-separator = |
+
+
+[module/i3]
+; i3 Module Settings
+type = internal/i3
+format = <label-state> <label-mode>
+strip-wsnumbers = true
+index-sort = true
+wrapping-scroll = false
+pin-workspaces = true
+show-all = true
+; Workspaces
+ws-num = 8
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;
+ws-icon-5 = 6;
+ws-icon-6 = 7;
+ws-icon-7 = 8;
+
+; Only show workspaces on the same output as the bar
+;pin-workspaces = true
+
+label-mode-padding = 1
+label-mode-foreground = ${colors.nord05}
+label-mode-background = ${colors.nord01}
+
+; focused = Active workspace on focused monitor
+label-focused = %icon%
+label-focused-background = ${colors.nord01}
+label-focused-underline= ${colors.transparent}
+label-focused-padding = 1
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %icon%
+label-unfocused-foreground = ${colors.nord03}
+label-unfocused-padding = 1
+
+; visible = Active workspace on unfocused monitor
+label-visible = %icon%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %icon%
+label-urgent-foreground = ${colors.nord09}
+label-urgent-padding = 1
+
+; Separator in between workspaces
+;label-separator = |
+;label-padding = 1
+
+
+[module/date]
+type = internal/date
+interval = 60
+date = "%Y/%m/%d"
+date-foreground = ${colors.nord05}
+format-prefix = " "
+format-prefix-foreground = ${colors.nord03}
+label = %date%
+
+
+[module/time]
+type = internal/date
+interval = 5
+time = "%H:%M"
+time-foreground = ${colors.nord05}
+time-alt = "%H:%M:%S"
+time-alt-foreground = ${colors.nord05}
+format-prefix = " "
+format-prefix-foreground = ${colors.nord03}
+label = %time%
+
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 98
+
+format-charging = <animation-charging> <label-charging>
+
+format-discharging = <animation-discharging> <label-discharging>
+
+format-full-prefix = "  "
+format-full-prefix-foreground = ${colors.nord03}
+
+; Capacity
+ramp-capacity-0 = "  "
+ramp-capacity-1 = "  "
+ramp-capacity-2 = "  "
+ramp-capacity-3 = "  "
+ramp-capacity-4 = "  "
+ramp-capacity-foreground = ${colors.nord03}
+
+; Charging - Empty > Full
+animation-charging-0 = "  "
+animation-charging-1 = "  "
+animation-charging-2 = "  "
+animation-charging-3 = "  "
+animation-charging-4 = "  "
+animation-charging-foreground = ${colors.nord03}
+animation-charging-framerate = 750
+
+; Discharging - Full > Empty
+animation-discharging-0 = "  " 
+animation-discharging-1 = "  " 
+animation-discharging-2 = "  " 
+animation-discharging-3 = "  " 
+animation-discharging-4 = "  " 
+animation-discharging-foreground = ${colors.nord03}
+animation-discharging-framerate = 750
+
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+; Available tags:
+;   <label-volume> (default)
+;   <ramp-volume>
+;   <bar-volume>
+format-volume = <ramp-volume> <label-volume>
+
+; Available tokens:
+;   %percentage% (default)
+;   %decibels%
+label-volume = %percentage%%
+label-volume-foreground = ${colors.nord05}
+
+; Available tokens:
+;   %percentage% (default)
+;   %decibels%
+label-muted = 婢 muted
+label-muted-foreground = ${colors.nord03}
+
+ramp-volume-0 = ""
+ramp-volume-1 = ""
+ramp-volume-2 = ""
+ramp-volume-foreground = ${colors.nord03}
+
+
+[module/backlight]
+type = internal/backlight
+card = intel_backlight
+use-actual-brightness = true
+enable-scroll = true
+format = <ramp> <label>
+
+; Available tokens:
+;   %percentage% (default)
+label = %percentage%%
+label-foreground = ${colors.nord05}
+
+; Only applies if <ramp> is used
+ramp-0 = 🌕
+ramp-1 = 🌔
+ramp-2 = 🌓
+ramp-3 = 🌒
+ramp-4 = 🌑
+ramp-foreground = ${colors.nord03}
+
+
+[module/nm-wifi]
+type = custom/script
+exec = ~/.config/polybar/scripts/network.sh -t wireless
+tail = false
+interval = 0.25
+label = " %output%"
+label-foreground = ${colors.nord05}
+format-prefix = " "
+format-prefix-foreground = ${colors.nord03}
+click-left = ~/.config/polybar/scripts/network.sh -t wireless -s
+
+
+[module/nm-network]
+type = custom/script
+exec = ~/.config/polybar/scripts/network.sh
+tail = false
+interval = 0.25
+label = " %output%"
+label-foreground = ${colors.nord05}
+format-prefix = " "
+format-prefix-foreground = ${colors.nord03}
+click-left = ~/.config/polybar/scripts/network.sh -t ethernet -s
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = false
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+; vim:ft=dosini
