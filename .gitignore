@@ -5,31 +5,7 @@
 /insp3442-arch/rEFInd/refind_x64.efi
 /insp3442-arch/.config/cef_user_data/
 /insp3442-arch/.config/chromium/
-/insp3442-arch/.config/Code\ -\ OSS/Backups/
-/insp3442-arch/.config/Code\ -\ OSS/blob_storage/
-/insp3442-arch/.config/Code\ -\ OSS/Cache/
-/insp3442-arch/.config/Code\ -\ OSS/CachedData/
-/insp3442-arch/.config/Code\ -\ OSS/CachedExtensions/
-/insp3442-arch/.config/Code\ -\ OSS/CachedExtensionVSIXs/
-/insp3442-arch/.config/Code\ -\ OSS/Code\ Cache/
-/insp3442-arch/.config/Code\ -\ OSS/Crashpad/
-/insp3442-arch/.config/Code\ -\ OSS/Dictionaries/
-/insp3442-arch/.config/Code\ -\ OSS/GPUCache/
-/insp3442-arch/.config/Code\ -\ OSS/Local\ Storage/
-/insp3442-arch/.config/Code\ -\ OSS/logs/
-/insp3442-arch/.config/Code\ -\ OSS/Service\ Worker/
-/insp3442-arch/.config/Code\ -\ OSS/Session\ Storage/
-/insp3442-arch/.config/Code\ -\ OSS/User/History/
-/insp3442-arch/.config/Code\ -\ OSS/User/workspaceStorage/
-/insp3442-arch/.config/Code\ -\ OSS/Cookies
-/insp3442-arch/.config/Code\ -\ OSS/Cookies-journal
-/insp3442-arch/.config/Code\ -\ OSS/languagepacks.json
-/insp3442-arch/.config/Code\ -\ OSS/machineid
-/insp3442-arch/.config/Code\ -\ OSS/Network\ Persistent\ State
-/insp3442-arch/.config/Code\ -\ OSS/Preferences
-/insp3442-arch/.config/Code\ -\ OSS/QuotaManager
-/insp3442-arch/.config/Code\ -\ OSS/QuotaManager-journal
-/insp3442-arch/.config/Code\ -\ OSS/TransportSecurity
+/insp3442-arch/.config/Code\ -\ OSS/
 /insp3442-arch/.config/dconf/
 /insp3442-arch/.config/discord/
 /insp3442-arch/.config/draw.io/
@@ -46,6 +22,7 @@
 /insp3442-arch/.config/obsidian/
 /insp3442-arch/.config/pulse/
 /insp3442-arch/.config/qBittorrent/qBittorrent-data.conf
+/insp3442-arch/.config/qBittorrent/*.json
 /insp3442-arch/.config/setzer/*==.pickle
 /insp3442-arch/.config/setzer/workspace.pickle
 /insp3442-arch/.config/StardewValley/
