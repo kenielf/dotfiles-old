@@ -50,11 +50,11 @@ PreeditEnabledByDefault=True
 # Show Input Method Information when switch input method
 ShowInputMethodInformation=True
 # Show Input Method Information when changing focus
-showInputMethodInformationWhenFocusIn=True
+showInputMethodInformationWhenFocusIn=False
 # Show compact input method information
-CompactInputMethodInformation=False
+CompactInputMethodInformation=True
 # Show first input method information
-ShowFirstInputMethodInformation=False
+ShowFirstInputMethodInformation=True
 # Default page size
 DefaultPageSize=5
 # Override Xkb Option

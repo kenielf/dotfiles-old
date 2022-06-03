@@ -97,6 +97,7 @@ for_window [class="qt5ct"] floating enable resize set 800 600 move position cent
 for_window [class="Gucharmap"] floating enable
 for_window [class="Anki" title="Preferences"] floating enable
 for_window [class="pomotroid"] floating enable $border_size
+for_window [class="Zenity"] floating enable $border_size
 
 # Workspace 1 - Browsers
 assign [class="librewolf"] $ws01
@@ -165,8 +166,6 @@ for_window [class="Steam" title="Friends List"] floating enable
 for_window [class="Steam" title="Steam - News"] floating enable resize set 700 800
 assign [class="retroarch"] $ws06
 for_window [class="retroarch"] $border_size
-assign [class="Zenity"] $ws06
-for_window [class="Zenity"] $border_size
 for_window [class="minecraft-launcher"] move to workspace $ws06
 for_window [class="Minecraft Launcher"] move to workspace $ws06
 for_window [title="Sign in to Minecraft"] floating enable resize set 1000 621

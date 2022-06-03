@@ -29,6 +29,7 @@ video/x-ms-wmv=mpv.desktop;
 application/x-ms-dos-executable=wine.desktop;
 application/x-wine-extension-ini=org.xfce.mousepad.desktop;
 video/mp4=vlc.desktop;
+application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;
 
 [Default Applications]
 text/html=librewolf.desktop
@@ -67,3 +68,4 @@ video/x-ms-wmv=mpv.desktop
 text/plain=org.xfce.mousepad.desktop
 application/x-ms-dos-executable=wine.desktop
 application/x-wine-extension-ini=org.xfce.mousepad.desktop
+application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;
