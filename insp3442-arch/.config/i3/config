@@ -96,6 +96,8 @@ for_window [class="Lxappearance"] floating enable
 for_window [class="qt5ct"] floating enable resize set 800 600 move position center
 for_window [class="Gucharmap"] floating enable
 for_window [class="Anki" title="Preferences"] floating enable
+for_window [class="Anki" title="Add"] floating enable
+for_window [class="Anki" title="Browse*"] floating enable
 for_window [class="pomotroid"] floating enable $border_size
 for_window [class="Zenity"] floating enable $border_size
 
