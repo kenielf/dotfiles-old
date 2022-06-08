@@ -1,0 +1,15 @@
+#!/usr/bin/env sh
+# <!-- Configuration -->
+# vi: ft=sh
+set -eu
+
+# <!-- Set the name for the scratchpad -->
+name="$1"
+
+# <!-- Make sure the scratchpad is always running -->
+while ! xdotool search --name "$name"; do
+    kitty --override "font_size=12" --override "background_opacity=0.8" --name "$name" --title "$name" 2>/dev/null || \
+    kitty --override "font_size=12" --override "background_opacity=0.8" --name "$name" --title "$name" 2>/dev/null || \
+    kitty --override "font_size=12" --override "background_opacity=0.8" --name "$name" --title "$name" 2>/dev/null || \
+    exit
+done

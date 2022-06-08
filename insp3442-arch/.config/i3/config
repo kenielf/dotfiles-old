@@ -1,46 +1,33 @@
-###---REGULAR VARIABLES---###
-set $mod Mod4
+# <!-- I3wm Configuration -->
+###--- VARIABLES ---###
+set $super Mod4
 set $alt Mod1
 set $script_dir ~/.config/i3/scripts
 
 ###--- THEMING ---###
-include ~/.config/i3/themes/nord.theme
+include $UTHEME_DIR/i3/theme
 
 ###--- AUTOSTART ---###
-# Set Compositor
-exec_always --no-startup-id ~/.config/picom/picom.sh
-
-# Sensitivity
-exec_always --no-startup-id ~/.config/i3/scripts/set-sensitivity &
-
-# Notification Daemon
-exec --no-startup-id dunst &
-
-# Status bar
-exec_always --no-startup-id ~/.config/polybar/polybar-i3.sh &
-
-# Fix display
 exec --no-startup-id xrandr --output "$(xrandr | grep -oP "([\w_-]+)(?=\sconnected\sprimary)")" --set "scaling mode" "Full" &
-
-# Extra
+exec --no-startup-id dunst &
 exec --no-startup-id nm-applet &
-exec --no-startup-id xpad --now-new --hide &
+exec --no-startup-id xpad --no-new --hide &
 exec --no-startup-id thunar --daemon &
 exec --no-startup-id mpd &
+exec_always --no-startup-id ~/.config/picom/picom.sh &
+exec_always --no-startup-id ~/.config/i3/scripts/fix-sensitivity &
+exec_always --no-startup-id ~/.config/polybar/polybar-i3.sh &
 
 ###--- FONT ---###
 font pango:"FiraCode Nerd Font Mono" 10
 
 ###--- WORKSPACES ---###
 # Configuration
-#focus_on_window_activation none
 focus_follows_mouse yes
 workspace_layout default
 show_marks no
-#smart_gaps on
-#smart_borders no_gaps
 
-###--- WORKSPACES ---###
+# Number of workspaces
 # 1 - Browsers; 2 - Terminals
 # 3 - File Managers; 4 - Coding
 # 5 - Free; 6 - Gaming
@@ -60,25 +47,22 @@ gaps inner $gap
 gaps outer $gap
 
 # Borders
-set $border_size border pixel 2 
-default_border pixel 2 
+set $border_size border pixel 2
+hide_edge_borders none
+default_border pixel 2
 default_floating_border pixel 2
-#border_radius 2
-hide_edge_borders both
 
-# Assignments
-# Workspace agnostic - Floating
-for_window [class="Blueman-manager"] floating enable resize set 800 600
-for_window [class="qpwgraph"] floating enable
+###--- WINDOWS ---###
+# Floating
+for_window [class="Blueman-manager"] floating enable, resize set 800 600
+for_window [class="qpwgraph"] floating enable 
 for_window [class="qBittorrent"] floating enable
 for_window [class="Mousepad"] floating enable
-for_window [class="Engrampa"] floating enable
-for_window [class="Engrampa"] move position center
-for_window [class="trayer"] floating enable border pixel 0
+for_window [class="Engrampa"] floating enable, move position center
+for_window [class="trayer"] floating enable, border pixel 0
 for_window [class="Czkawka_gui" title="Czkawka Progress Window"] floating enable
 for_window [class="Czkawka_gui" title="Czkawka Options"] floating enable
-for_window [class="Pavucontrol"] floating enable resize set 800 350 
-for_window [class="Pavucontrol"] move position center
+for_window [class="Pavucontrol"] floating enable, resize set 800 350, move position center
 for_window [class="Mate-calc"] floating enable
 for_window [instance="OpenGL"] floating enable
 for_window [window_role="About"] floating enable
@@ -88,24 +72,24 @@ for_window [class="Eog"] floating enable $border_size
 for_window [window_role="GtkFileChooserDialog"] floating enable
 for_window [class="fcitx5-config-qt"] floating enable
 for_window [class="scrcpy"] floating enable
-for_window [class="helvum"] floating enable resize set 1080 620 move position center
+for_window [class="helvum"] floating enable, resize set 1080 620, move position center
 for_window [class="kbd-layout-viewer"] floating enable
 for_window [class="KeePassXC"] floating enable
 for_window [class="Kvantum Manager"] floating enable
 for_window [class="Lxappearance"] floating enable
-for_window [class="qt5ct"] floating enable resize set 800 600 move position center
+for_window [class="qt5ct"] floating enable, resize set 800 600, move position center
 for_window [class="Gucharmap"] floating enable
 for_window [class="Anki" title="Preferences"] floating enable
 for_window [class="Anki" title="Add"] floating enable
 for_window [class="Anki" title="Browse*"] floating enable
-for_window [class="pomotroid"] floating enable $border_size
-for_window [class="Zenity"] floating enable $border_size
+for_window [class="pomotroid"] floating enable, $border_size
+for_window [class="Zenity"] floating enable, $border_size
 
 # Workspace 1 - Browsers
 assign [class="librewolf"] $ws01
 for_window [class="librewolf" title="Library"] floating enable
 for_window [class="librewolf" instance="Devtools"] floating enable
-for_window [class="firefox"] $ws01
+assign [class="firefox"] $ws01
 for_window [class="firefox" title="Library"] floating enable
 for_window [class="firefox" instance="Devtools"] floating enable
 assign [class="Chromium"] $ws01
@@ -122,9 +106,7 @@ assign [class="Org.gnome.Nautilus"] $ws03
 
 # Workspace 4 - Other Windows
 assign [class="Zathura"] $ws04
-for_window [class="Zathura"] $border_size focus
-assign [class="libreoffice-writer"] $ws04
-for_window [class="libreoffice-writer"] $border_size move to workspace $ws04
+for_window [class="Zathura"] $border_size, focus
 assign [class="Audacity"] $ws04
 assign [class="kdenlive"] $ws04
 assign [class="Czkawka_gui"] $ws04
@@ -132,12 +114,7 @@ assign [class="Blender"] $ws04
 assign [class="obsidian"] $ws04
 for_window [class="obsidian"] $border_size
 assign [class="GParted"] $ws04
-assign [class="libreoffice-writer"] $ws04
-assign [class="libreoffice-calc"] $ws04
-assign [class="libreoffice-writer"] $ws04
-assign [class="libreoffice-draw"] $ws04
-assign [class="libreoffice-math"] $ws04
-assign [class="libreoffice-impress"] $ws04
+assign [class="libreoffice-*"] $ws04
 assign [class="Inkscape"] $ws04
 assign [class="krita"] $ws04
 assign [class="obs"] $ws04
@@ -153,11 +130,10 @@ for_window [class="Codeblocks"] $border_size
 assign [class="Codeblocks"] $ws05
 for_window [class="jetbrains-pycharm-ce"] $border_size
 assign [class="jetbrains-pycharm-ce"] $ws05
-for_window [class="jetbrains-pycharm-ce" title="Welcome to PyCharm"] floating enable resize set 796 654
-for_window [class="jetbrains-pycharm-ce" title="Welcome to PyCharm"] move position center 
-for_window [title="win0"] floating enable move position center
-for_window [title="PyCharm User Agreement"] floating enable $border_size
-for_window [title="Data Sharing"] floating enable $border_size
+for_window [class="jetbrains-pycharm-ce" title="Welcome to PyCharm"] floating enable, resize set 796 654, move position center
+for_window [title="win0"] floating enable, move position center
+for_window [title="PyCharm User Agreement"] floating enable, $border_size
+for_window [title="Data Sharing"] floating enable, $border_size
 assign [class="code-oss"] $ws05
 for_window [class="code-oss"] $border_size
 
@@ -165,22 +141,19 @@ for_window [class="code-oss"] $border_size
 assign [class="Steam"] $ws06
 for_window [class="Steam"] $border_size
 for_window [class="Steam" title="Friends List"] floating enable
-for_window [class="Steam" title="Steam - News"] floating enable resize set 700 800
+for_window [class="Steam" title="Steam - News"] floating enable, resize set 700 800
 assign [class="retroarch"] $ws06
 for_window [class="retroarch"] $border_size
 for_window [class="minecraft-launcher"] move to workspace $ws06
 for_window [class="Minecraft Launcher"] move to workspace $ws06
-for_window [title="Sign in to Minecraft"] floating enable resize set 1000 621
-for_window [title="Sign in to Minecraft"] move position center
-for_window [title="Welcome to Xbox"] floating enable resize set 1000 621
-for_window [title="Welcome to Xbox"] move position center
+for_window [title="Sign in to Minecraft"] floating enable, resize set 1000 621, move position center
+for_window [title="Welcome to Xbox"] floating enable, resize set 1000 621, move position center
 
 # Workspace 7 - Video
 for_window [class="mpv"] $border_size
 assign [class="mpv"] $ws07
 for_window [class="mpv"] focus
-for_window [class="vlc"] floating enable $border_size sticky enable
-for_window [class="vlc"] resize set 600 400
+for_window [class="vlc"] floating enable, $border_size, resize set 640 480, sticky enable
 
 # Workspace 8 - Communication
 assign [class="discord"] $ws08
@@ -193,76 +166,73 @@ for_window [class="Microsoft Teams - Insiders"] $border_size
 set $scratch Scratcher
 
 # Assignment
-for_window [instance="$scratch"] floating enable
-for_window [instance="$scratch"] resize set 1000 600
-for_window [instance="$scratch"] move scratchpad
-for_window [instance="$scratch"] border pixel 2
+for_window [instance="$scratch"] floating enable, resize set 1000 600, move scratchpad, $border_size
 
 # Start
-exec_always --no-startup-id ~/.config/i3/scripts/scratchpad.sh &
+exec_always --no-startup-id ~/.config/i3/scripts/start-scratchd $scratch &
 
 ###--- KEYBINDS ---###
 # I3WM Control
-bindsym $mod+Shift+c reload
-bindsym $mod+Shift+r restart
+bindsym $super+Shift+c reload
+bindsym $super+Shift+r restart
 
 # Workspace Control
-bindsym $mod+1 workspace $ws01
-bindsym $mod+2 workspace $ws02
-bindsym $mod+3 workspace $ws03
-bindsym $mod+4 workspace $ws04
-bindsym $mod+5 workspace $ws05
-bindsym $mod+6 workspace $ws06
-bindsym $mod+7 workspace $ws07
-bindsym $mod+8 workspace $ws08
+bindsym $super+1 workspace $ws01
+bindsym $super+2 workspace $ws02
+bindsym $super+3 workspace $ws03
+bindsym $super+4 workspace $ws04
+bindsym $super+5 workspace $ws05
+bindsym $super+6 workspace $ws06
+bindsym $super+7 workspace $ws07
+bindsym $super+8 workspace $ws08
 
-bindsym $mod+Tab workspace next
-bindsym $mod+Shift+Tab workspace prev
+bindsym $super+Tab workspace next
+bindsym $super+Shift+Tab workspace prev
 
-bindsym $mod+Shift+1 move container to workspace $ws01
-bindsym $mod+Shift+2 move container to workspace $ws02
-bindsym $mod+Shift+3 move container to workspace $ws03
-bindsym $mod+Shift+4 move container to workspace $ws04
-bindsym $mod+Shift+5 move container to workspace $ws05
-bindsym $mod+Shift+6 move container to workspace $ws06
-bindsym $mod+Shift+7 move container to workspace $ws07
-bindsym $mod+Shift+8 move container to workspace $ws08
+bindsym $super+Shift+1 move container to workspace $ws01
+bindsym $super+Shift+2 move container to workspace $ws02
+bindsym $super+Shift+3 move container to workspace $ws03
+bindsym $super+Shift+4 move container to workspace $ws04
+bindsym $super+Shift+5 move container to workspace $ws05
+bindsym $super+Shift+6 move container to workspace $ws06
+bindsym $super+Shift+7 move container to workspace $ws07
+bindsym $super+Shift+8 move container to workspace $ws08
 
 # Window Control
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+bindsym $super+h focus left
+bindsym $super+j focus down
+bindsym $super+k focus up
+bindsym $super+l focus right
+bindsym $super+Left focus left
+bindsym $super+Down focus down
+bindsym $super+Up focus up
+bindsym $super+Right focus right
 
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+bindsym $super+Shift+h move left
+bindsym $super+Shift+j move down
+bindsym $super+Shift+k move up
+bindsym $super+Shift+l move right
+bindsym $super+Shift+Left move left
+bindsym $super+Shift+Down move down
+bindsym $super+Shift+Up move up
+bindsym $super+Shift+Right move right
 
-bindsym $mod+Control+h resize shrink width 10px or 10ppt
-bindsym $mod+Control+j resize grow height 10px or 10ppt
-bindsym $mod+Control+k resize shrink height 10px or 10ppt
-bindsym $mod+Control+l resize grow width 10px or 10ppt
-bindsym $mod+Control+Left resize shrink width 10px or 10ppt
-bindsym $mod+Control+Down resize grow height 10px or 10ppt
-bindsym $mod+Control+Up resize shrink height 10px or 10ppt
-bindsym $mod+Control+Right resize grow width 10px or 10ppt
+bindsym $super+Control+h resize shrink width 10px or 10ppt
+bindsym $super+Control+j resize grow height 10px or 10ppt
+bindsym $super+Control+k resize shrink height 10px or 10ppt
+bindsym $super+Control+l resize grow width 10px or 10ppt
+bindsym $super+Control+Left resize shrink width 10px or 10ppt
+bindsym $super+Control+Down resize grow height 10px or 10ppt
+bindsym $super+Control+Up resize shrink height 10px or 10ppt
+bindsym $super+Control+Right resize grow width 10px or 10ppt
 
-bindsym $mod+z split h
-bindsym $mod+x split v
-bindsym $mod+f fullscreen
-bindsym $mod+Shift+space floating toggle
-bindsym $mod+Shift+f focus mode_toggle
-floating_modifier $mod
-bindsym $mod+Shift+q kill
+bindsym $super+z split h
+bindsym $super+x split v
+bindsym $super+f fullscreen
+bindsym $super+Shift+space floating toggle
+bindsym $super+Shift+f focus mode_toggle
+floating_modifier $super
+bindsym $super+Shift+q kill
 bindsym --release Control+Shift+q exec --no-startup-id xkill
 
 # XF86 Keys
@@ -274,8 +244,8 @@ bindsym XF86AudioPause exec --no-startup-id mpc toggle
 bindsym XF86AudioStop exec --no-startup-id mpc stop
 bindsym XF86AudioNext exec --no-startup-id mpc next
 bindsym XF86AudioPrev exec --no-startup-id mpc prev
-bindsym $mod+XF86AudioRaiseVolume exec --no-startup-id mpc volume +5
-bindsym $mod+XF86AudioLowerVolume exec --no-startup-id mpc volume -5
+bindsym $super+XF86AudioRaiseVolume exec --no-startup-id mpc volume +5
+bindsym $super+XF86AudioLowerVolume exec --no-startup-id mpc volume -5
 # Special Keys
 bindsym XF86HomePage exec --no-startup-id firefox
 bindsym Shift+XF86HomePage exec --no-startup-id firefox --private-window
@@ -296,24 +266,25 @@ bindsym Print exec --no-startup-id flameshot gui
 bindsym Shift+Print exec --no-startup-id scrot 'screenshot--%Y-%m-%d--%a-%T.png' --quality 100 -e 'mv $f ~/Pictures/Screenshots/' && notify-send -t 1000 "Screenshot Taken"
 
 # Applications
-bindsym $mod+Return exec --no-startup-id kitty
+bindsym $super+Return exec --no-startup-id kitty
 
-#bindsym $mod+space --release exec --no-startup-id fcitx5-remote -t
+#bindsym $super+space --release exec --no-startup-id fcitx5-remote -t
 
-bindsym $mod+d exec --no-startup-id sh ~/.config/rofi/Launcher/launcher.sh
-bindsym $mod+Shift+e exec --no-startup-id sh ~/.config/rofi/Powermenu/powermenu.sh
+bindsym $super+d exec --no-startup-id sh ~/.config/rofi/Launcher/launcher.sh
+bindsym $super+Shift+e exec --no-startup-id sh ~/.config/rofi/Powermenu/powermenu.sh
 
-bindsym $mod+p exec --no-startup-id xpad --toggle
-bindsym $mod+Shift+p exec --no-startup-id xpad --new
+bindsym $super+p exec --no-startup-id xpad --toggle
+bindsym $super+Shift+p exec --no-startup-id xpad --new
 
-bindsym $mod+c exec --no-startup-id mate-calc
+bindsym $super+c exec --no-startup-id mate-calc
 
-bindsym $mod+e exec --no-startup-id thunar
-bindsym $mod+r exec --no-startup-id thunar -B
+bindsym $super+e exec --no-startup-id thunar
+bindsym $super+r exec --no-startup-id thunar -B
 
 bindsym Control+Escape exec --no-startup-id dunstctl close-all
 bindsym Control+Shift+Escape exec --no-startup-id dunstctl set-paused toggle
 
-bindsym $mod+Shift+d [instance="$scratch"] scratchpad show; [instance="$scratch"] move position center
+bindsym $super+Shift+d [instance="$scratch"] scratchpad show; [instance="$scratch"] move position center
 
-bindsym $mod+Shift+t exec --no-startup-id $script_dir/compositor_screen-refresh.sh
+bindsym $super+t exec --no-startup-id $script_dir/toggle-hidden
+bindsym $super+Shift+t exec --no-startup-id $script_dir/toggle-compositor; exec --no-startup-id $script_dir/fix-screen

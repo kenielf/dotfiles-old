@@ -1,0 +1,21 @@
+#!/usr/bin/env sh
+# <!-- Configuration -->
+# vi: ft=sh
+set -eu
+
+# <!-- Variables -->
+# Logitech G403
+MOUSE_N1="Logitech G403 Prodigy Gaming Mouse"
+MOUSE_S1=-0.7
+# Dell Wireless
+MOUSE_N2="Dell Computer Corp Dell Universal Receiver Mouse"
+MOUSE_S2=-1
+
+# <!-- Check if each mouse exists, if so, apply sensitivity -->
+ATTR="libinput Accel Speed"
+if xinput --list --name-only | grep -q "$MOUSE_N1"; then
+    xinput --set-prop "$MOUSE_N1" "$ATTR" "$MOUSE_S1"
+elif xinput --list --name-only | grep -q "$MOUSE_N2"; then
+    xinput --set-prop "$MOUSE_N2" "$ATTR" "$MOUSE_S2"
+fi
+exit 0

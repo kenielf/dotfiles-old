@@ -58,7 +58,8 @@ symlink "$cur_p/insp3442-arch/.zshrc.zni" "$HOME/.zshrc.zni"
 ## LightDM
 copy "$cur_p/insp3442-arch/LightDM" "/etc/lightdm"
 ## General ETC files
-copy "$cur_p/insp3442-arch/etc/udev/" "/etc/udev"
+copy "$cur_p/insp3442-arch/etc/udev" "/etc/udev"
+copy "$cur_p/insp3442-arch/etc/utheme" "/etc/utheme"
 copy "$cur_p/insp3442-arch/etc/makepkg.conf" "/etc/makepkg.conf"
 copy "$cur_p/insp3442-arch/etc/mkinitcpio.conf" "/etc/mkinitcpio.conf"
 copy "$cur_p/insp3442-arch/etc/pacman.conf" "/etc/pacman.conf"

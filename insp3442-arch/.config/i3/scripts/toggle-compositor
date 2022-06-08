@@ -1,0 +1,11 @@
+#!/usr/bin/env sh
+# <!-- Configuration -->
+# vi: ft=sh
+set -eu
+
+# <!-- Check if compositor is running; kill if so, start if not -->
+if [ "$(pgrep -x "picom")" ]; then
+    killall picom
+else
+    setsid -f "$HOME/.config/picom/picom.sh" >/dev/null 2>&1
+fi
