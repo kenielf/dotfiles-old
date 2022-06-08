@@ -8,7 +8,7 @@ tmp_file="/tmp/local-i3hidden"
 # <!-- Check if the temporary file exists -->
 if [ -f "$tmp_file" ]; then
     # <!-- Unhide the window and delete the file -->
-    i3-msg [instance="$(cat $tmp_file)"] scratchpad show
+    i3-msg [instance="$(cat $tmp_file)"] scratchpad show || rm $tmp_file
     rm $tmp_file
 else
     # <!-- Get the current active window -->
