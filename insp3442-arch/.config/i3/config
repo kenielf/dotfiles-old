@@ -84,11 +84,13 @@ for_window [class="Anki" title="Add"] floating enable
 for_window [class="Anki" title="Browse*"] floating enable
 for_window [class="pomotroid"] floating enable, $border_size
 for_window [class="Zenity"] floating enable, $border_size
+for_window [class="Nm-connection-editor"] floating enable
 
 # Workspace 1 - Browsers
 assign [class="librewolf"] $ws01
-for_window [class="librewolf" title="Library"] floating enable
-for_window [class="librewolf" instance="Devtools"] floating enable
+for_window [class="(?i)librewolf" title="Library"] floating enable
+for_window [class="(?i)librewolf" instance="Devtools"] floating enable
+for_window [class="(?i)librewolf" title="(?i)Private Browsing"] floating enable, resize set 800 600, move position center
 assign [class="firefox"] $ws01
 for_window [class="firefox" title="Library"] floating enable
 for_window [class="firefox" instance="Devtools"] floating enable
@@ -188,6 +190,8 @@ bindsym $super+8 workspace $ws08
 
 bindsym $super+Tab workspace next
 bindsym $super+Shift+Tab workspace prev
+bindsym $alt+Tab workspace next
+bindsym $alt+Shift+Tab workspace prev
 
 bindsym $super+Shift+1 move container to workspace $ws01
 bindsym $super+Shift+2 move container to workspace $ws02
@@ -226,8 +230,11 @@ bindsym $super+Control+Down resize grow height 10px or 10ppt
 bindsym $super+Control+Up resize shrink height 10px or 10ppt
 bindsym $super+Control+Right resize grow width 10px or 10ppt
 
-bindsym $super+z split h
-bindsym $super+x split v
+
+bindsym $super+z split h; exec notify-send -t 1000 -i "window-manager" "i3" "Tiling horizontally."
+bindsym $super+x split v; exec notify-send -t 1000 -i "window-manager" "i3" "Tiling vertically."
+#bindsym $super+z split h; exec notify-send -a "i3wm" "Tiling horizontally"
+#bindsym $super+x split v; exec notify-send -a "i3wm" "Tiling vertically."
 bindsym $super+f fullscreen
 bindsym $super+Shift+space floating toggle
 bindsym $super+Shift+f focus mode_toggle

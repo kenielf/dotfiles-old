@@ -32,6 +32,9 @@
     # Position the notification in the top right corner
     origin = top-right
 
+    # Rounded Corners
+    corner_radius = 4
+
     # Offset from the origin
     #offset = 10x50
     offset = 30x50
@@ -188,16 +191,21 @@
     # Align icons left/right/off
     icon_position = left
 
+    # Paths to default icons.
+    icon_path = /usr/share/icons/Flat-Remix-Blue-Dark/:/usr/share/icons/Flat-Remix-Blue-Dark/actions/:/usr/share/icons/Flat-Remix-Blue-Dark/actions/16/:/usr/share/icons/Flat-Remix-Blue-Dark/actions/18/:/usr/share/icons/Flat-Remix-Blue-Dark/actions/22/:/usr/share/icons/Flat-Remix-Blue-Dark/actions/24/:/usr/share/icons/Flat-Remix-Blue-Dark/actions/symbolic/:/usr/share/icons/Flat-Remix-Blue-Dark/animations/:/usr/share/icons/Flat-Remix-Blue-Dark/apps/:/usr/share/icons/Flat-Remix-Blue-Dark/apps/scalable/:/usr/share/icons/Flat-Remix-Blue-Dark/apps/symbolic/:/usr/share/icons/Flat-Remix-Blue-Dark/categories/:/usr/share/icons/Flat-Remix-Blue-Dark/categories/symbolic/:/usr/share/icons/Flat-Remix-Blue-Dark/devices/:/usr/share/icons/Flat-Remix-Blue-Dark/devices/symbolic/:/usr/share/icons/Flat-Remix-Blue-Dark/emblems/:/usr/share/icons/Flat-Remix-Blue-Dark/emblems/scalable/:/usr/share/icons/Flat-Remix-Blue-Dark/emblems/symbolic/:/usr/share/icons/Flat-Remix-Blue-Dark/mimetypes/:/usr/share/icons/Flat-Remix-Blue-Dark/mimetypes/scalable/:/usr/share/icons/Flat-Remix-Blue-Dark/mimetypes/symbolic/:/usr/share/icons/Flat-Remix-Blue-Dark/panel/:/usr/share/icons/Flat-Remix-Blue-Dark/places/:/usr/share/icons/Flat-Remix-Blue-Dark/places/scalable/:/usr/share/icons/Flat-Remix-Blue-Dark/places/symbolic/:/usr/share/icons/Flat-Remix-Blue-Dark/status/:/usr/share/icons/Flat-Remix-Blue-Dark/status/scalable/:/usr/share/icons/Flat-Remix-Blue-Dark/status/scalable/16/:/usr/share/icons/Flat-Remix-Blue-Dark/status/scalable/32/:/usr/share/icons/Flat-Remix-Blue-Dark/status/symbolic/
+    #enable_recursive_icon_lookup = true
+    #icon_theme = Flat-Remix-Blue-Dark
+    min_icon_size = 64
+    max_icon_size = 64
+    #icon_size = 64
+
     # Scale small icons up to this size, set to 0 to disable. Helpful
     # for e.g. small files or high-dpi screens. In case of conflict,
     # max_icon_size takes precedence over this.
-    min_icon_size = 16
+    #min_icon_size = 64
 
     # Scale larger icons down to this size, set to 0 to disable
-    max_icon_size = 64
-
-    # Paths to default icons.
-    icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/:/usr/share/icons/Papirus-Custom/48x48/actions/:/usr/share/icons/Papirus-Custom/48x48/apps/:/usr/share/icons/Papirus-Custom/48x48/devices/:/usr/share/icons/Papirus-Custom/48x48/emblems/:/usr/share/icons/Papirus-Custom/48x48/emotes/:/usr/share/icons/Papirus-Custom/48x48/mimetypes/:/usr/share/icons/Papirus-Custom/48x48/places/:/usr/share/icons/Papirus-Custom/48x48/status/
+    #max_icon_size = 128
 
     ### History ###
 
@@ -230,7 +238,7 @@
     # corners.
     # The radius will be automatically lowered if it exceeds half of the
     # notification height to avoid clipping text and/or icons.
-    corner_radius = 0
+    corner_radius = 4
 
     # Ignore the dbus closeNotification message.
     # Useful to enforce the timeout set by dunst configuration. Without this

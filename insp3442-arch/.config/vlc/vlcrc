@@ -1563,10 +1563,10 @@ freetype-font=Noto Sans
 #qt-minimal-view=0
 
 # Systray icon (boolean)
-#qt-system-tray=1
+qt-system-tray=0
 
 # Show notification popup on track change (integer)
-#qt-notification=1
+qt-notification=0
 
 # Start VLC with only a systray icon (boolean)
 #qt-start-minimized=0
@@ -1590,7 +1590,7 @@ qt-video-autoresize=0
 #qt-fs-controller=1
 
 # Save the recently played items in the menu (boolean)
-#qt-recentplay=1
+qt-recentplay=0
 
 # List of words separated by | to filter (string)
 #qt-recentplay-filter=
@@ -1635,7 +1635,7 @@ qt-privacy-ask=0
 #qt-fs-sensitivity=3
 
 # When to raise the interface (integer)
-#qt-auto-raise=1
+qt-auto-raise=0
 
 [ncurses] # Ncurses interface
 
@@ -2587,6 +2587,11 @@ sout-x264-tune=film
 
 # DTS dynamic range compression (boolean)
 #dts-dynrng=1
+
+[dav1d] # Dav1d video decoder
+
+# Frames Threads (integer)
+#dav1d-thread-frames=0
 
 [cc] # Closed Captions decoder
 
@@ -3881,7 +3886,7 @@ vout=any
 #run-time=0.000000
 
 # Fast seek (boolean)
-#input-fast-seek=0
+input-fast-seek=1
 
 # Playback speed (float)
 #rate=1.000000

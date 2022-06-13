@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 # <!-- Configuration -->
-set -eu
+set -eux
 
 # <!-- Set the temporary file location -->
 tmp_file="/tmp/local-i3hidden"
@@ -8,13 +8,12 @@ tmp_file="/tmp/local-i3hidden"
 # <!-- Check if the temporary file exists -->
 if [ -f "$tmp_file" ]; then
     # <!-- Unhide the window and delete the file -->
-    i3-msg [instance="$(cat $tmp_file)"] scratchpad show || rm $tmp_file
-    rm $tmp_file
+    i3-msg [class="$(cat $tmp_file)"] scratchpad show && rm $tmp_file || rm $tmp_file
 else
     # <!-- Get the current active window -->
     act_xpr="$(xprop -id "$(xdotool getwindowfocus)")"
     act_cls="$(echo "$act_xpr" | awk '$1 == "WM_CLASS(STRING)" {print $NF}')"
     # <!-- Hide the window -->
-    i3-msg [instance="$act_cls"] move scratchpad
+    i3-msg [class="$act_cls"] move scratchpad
     echo "$act_cls" > $tmp_file
 fi
