@@ -7,7 +7,7 @@ audio/x-ms-wma=mpv.desktop;
 image/avif=org.gnome.eog.desktop;
 audio/mp4=mpv.desktop;
 audio/x-m4b=mpv.desktop;
-audio/mpeg=mpv.desktop;
+audio/mpeg=vlc.desktop;mpv.desktop;
 audio/x-flac+ogg=mpv.desktop;
 audio/x-vorbis+ogg=mpv.desktop;
 audio/x-opus+ogg=vlc.desktop;mpv.desktop;
@@ -30,6 +30,7 @@ application/x-ms-dos-executable=wine.desktop;
 application/x-wine-extension-ini=org.xfce.mousepad.desktop;
 video/mp4=vlc.desktop;
 application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;
+application/x-shellscript=org.xfce.mousepad.desktop;
 
 [Default Applications]
 text/html=librewolf.desktop

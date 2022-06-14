@@ -1,0 +1,6 @@
+# vi: ft=rc
+set selection-clipboard clipboard
+
+# Side by side mode
+map D set "first-page-column 1:1"
+map <C-d> set "first-page-column 1:2"

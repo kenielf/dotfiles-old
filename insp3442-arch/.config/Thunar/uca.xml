@@ -20,6 +20,20 @@
 	<image-files/>
 </action>
 <action>
+	<icon>dialog-warning</icon>
+	<name>Elevate folders permissions</name>
+	<unique-id>1654268572025180-1</unique-id>
+	<command>thunar --quit &amp;&amp; nohup thunar admin://%d &amp;&gt; /dev/null</command>
+	<description>Temporary permission elevation for the current folder</description>
+	<patterns>*</patterns>
+	<directories/>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
+</action>
+<action>
 	<icon></icon>
 	<name>test</name>
 	<unique-id>1652791669972825-2</unique-id>
