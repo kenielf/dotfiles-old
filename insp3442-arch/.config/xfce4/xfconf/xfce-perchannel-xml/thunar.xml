@@ -7,7 +7,7 @@
   <property name="last-window-height" type="int" value="712"/>
   <property name="last-window-maximized" type="bool" value="false"/>
   <property name="last-separator-position" type="int" value="170"/>
-  <property name="last-show-hidden" type="bool" value="true"/>
+  <property name="last-show-hidden" type="bool" value="false"/>
   <property name="misc-confirm-close-multiple-tabs" type="bool" value="false"/>
   <property name="misc-single-click" type="bool" value="false"/>
   <property name="misc-thumbnail-mode" type="string" value="THUNAR_THUMBNAIL_MODE_ALWAYS"/>
@@ -18,10 +18,14 @@
   <property name="shortcuts-icon-size" type="string" value="THUNAR_ICON_SIZE_24"/>
   <property name="misc-show-delete-action" type="bool" value="true"/>
   <property name="last-details-view-zoom-level" type="string" value="THUNAR_ZOOM_LEVEL_38_PERCENT"/>
-  <property name="last-details-view-column-widths" type="string" value="50,160,50,50,727,50,50,88,50,184"/>
+  <property name="last-details-view-column-widths" type="string" value="50,160,50,50,439,50,50,88,50,472"/>
   <property name="hidden-bookmarks" type="array">
     <value type="string" value="network:///"/>
     <value type="string" value="computer:///"/>
     <value type="string" value="file:///home/kenielf/Other/Desktop"/>
   </property>
+  <property name="misc-open-new-window-as-tab" type="bool" value="true"/>
+  <property name="last-sort-column" type="string" value="THUNAR_COLUMN_NAME"/>
+  <property name="last-sort-order" type="string" value="GTK_SORT_DESCENDING"/>
+  <property name="misc-middle-click-in-tab" type="bool" value="true"/>
 </channel>

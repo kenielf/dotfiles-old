@@ -103,6 +103,9 @@ assign [class="Alacritty"] $ws02
 
 # Workspace 3 - File Managers
 assign [class="Thunar"] $ws03
+for_window [class="Thunar" floating] floating enable, move position center
+for_window [class="Thunar" title="File Operation Progress"] floating enable, move position 890 610
+#for_window [class="Thunar" title="Confirm to*"] floating enable, move position center
 assign [class="Pcmanfm"] $ws03
 assign [class="Org.gnome.Nautilus"] $ws03
 
