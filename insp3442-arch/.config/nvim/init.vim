@@ -1,3 +1,6 @@
+" This line makes pacman-installed global Arch Linux vim packages work.
+source /usr/share/nvim/archlinux.vim
+
 " <!-- Encoding Configuration -->
 set encoding=utf-8
 scriptencoding utf-8
@@ -55,6 +58,8 @@ set viminfo+=:10000
 
 " <!-- Plugins -->
 call plug#begin()
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'jiangmiao/auto-pairs'
 Plug 'shaunsingh/nord.nvim'
 call plug#end()
 

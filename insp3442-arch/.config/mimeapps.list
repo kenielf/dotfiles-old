@@ -31,6 +31,7 @@ application/x-wine-extension-ini=org.xfce.mousepad.desktop;
 video/mp4=vlc.desktop;
 application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;
 application/x-shellscript=org.xfce.mousepad.desktop;
+application/x-bittorrent=org.qbittorrent.qBittorrent.desktop;
 
 [Default Applications]
 text/html=librewolf.desktop
@@ -70,3 +71,4 @@ text/plain=org.xfce.mousepad.desktop
 application/x-ms-dos-executable=wine.desktop
 application/x-wine-extension-ini=org.xfce.mousepad.desktop
 application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;
+application/x-bittorrent=org.qbittorrent.qBittorrent.desktop

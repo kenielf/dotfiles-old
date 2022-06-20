@@ -42,6 +42,7 @@ function tclear() {
     [ -n "$*" ] && command clear "$@" || \
     [ -n "$KITTY_PID" ] && command clear -T xterm || \
 }
+alias waifu2x="/usr/share/waifu2x-ncnn-vulkan/waifu2x-ncnn-vulkan"
 
 # Git
 alias gitcl="git clone"
