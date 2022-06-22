@@ -1,0 +1,83 @@
+{
+    "type": "preset",
+    "name": "insp3442-arch",
+    "description": "A nord themed arch linux install with focus on tiling WMs",
+    "preset_root": "/insp3442-arch",
+    "preset_packages": "/insp3442-arch/packages.txt",
+    "preset_header": "/insp3442-arch/header.txt",
+    "file_actions": {
+        "symlink":
+        [
+            {
+                "source": "/.config",
+                "target": "$HOME/.config"
+            },
+            {
+                "source": "/.dmrc",
+                "target": "$HOME/.dmrc"
+            },
+            {
+                "source": "/.gtkrc-2.0",
+                "target": "$HOME/.gtkrc-2.0"
+            },
+            {
+                "source": "/.zshrc",
+                "target": "$HOME/.zshrc"
+            },
+            {
+                "source": "/.zshrc.zni",
+                "target": "$HOME/.zshrc.zni"
+            }
+        ],
+        "copy":
+        [
+            {
+                "source": "/etc/udev",
+                "target": "/etc/udev"
+            },
+            {
+                "source": "/etc/utheme",
+                "target": "/etc/utheme"
+            },
+            {
+                "source": "/etc/makepkg.conf",
+                "target": "/etc/makepkg.conf"
+            },
+            {
+                "source": "/etc/mkinitcpio.conf",
+                "target": "/etc/mkinitcpio.conf"
+            },
+            {
+                "source": "/etc/pacman.conf",
+                "target": "/etc/pacman.conf"
+            },
+            {
+                "source": "/etc/tlp.conf",
+                "target": "/etc/tlp.conf"
+            },
+            {
+                "source": "/LightDM/lightdm.conf",
+                "target": "/etc/lightdm/lightdm.conf"
+            },
+            {
+                "source": "/LightDM/slick-greeter.conf",
+                "target": "/etc/lightdm/slick-greeter.conf"
+            },
+            {
+                "source": "/LightDM/users.conf",
+                "target": "/etc/lightdm/users.conf"
+            },
+            {
+                "source": "/LightDM/Xsession",
+                "target": "/etc/lightdm/Xsession"
+            }
+        ],
+        "warn":
+        [
+            {
+                "source": "/rEFInd",
+                "message": "rEFInd - bootloader files must be manually set up."
+            }
+        ]
+    }
+}
