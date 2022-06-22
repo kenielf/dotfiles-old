@@ -60,9 +60,9 @@ def options():
 
 def backup_if_exists(target_path):
     subprocess.call([
-        f"[ -f \"{target_path}\" ] && sudo mv -f \"{target_path}\" \"{target_path}.BAK\"",
+        f"[ -f \"{target_path}\" ] && sudo cp -rf \"{target_path}\" \"{target_path}.BAK\"",
         "||",
-        f"[ -d \"{target_path}\" ] && sudo mv -f \"{target_path}\" \"{target_path}.BAK\""
+        f"[ -d \"{target_path}\" ] && sudo cp -rf \"{target_path}\" \"{target_path}.BAK\""
     ], shell=True)
 
 
