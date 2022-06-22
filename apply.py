@@ -139,6 +139,8 @@ def main(active_dir, preset, skip=False):
         source = f"{active_dir}/{preset}/{file['source']}".replace("//", "/")
         message = file['message']
         warn(source, message)
+    # Finish
+    print("Installed dotfiles with directory backup enabled")
 
 
 if __name__ == "__main__":
