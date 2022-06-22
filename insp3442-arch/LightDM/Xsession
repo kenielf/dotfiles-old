@@ -69,6 +69,7 @@ export SSH_AUTH_SOCK
 
 # Theming
 export QT_QPA_PLATFORMTHEME=qt5ct
+source /etc/utheme/themerc
 
 # Input Manager
 numlockx &
