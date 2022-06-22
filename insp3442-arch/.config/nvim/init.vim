@@ -61,6 +61,13 @@ call plug#begin()
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jiangmiao/auto-pairs'
 Plug 'shaunsingh/nord.nvim'
+Plug 'akinsho/toggleterm.nvim'
+Plug 'kyazdani42/nvim-tree.lua'
+Plug 'akinsho/bufferline.nvim'
+Plug 'lewis6991/impatient.nvim'
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'jbgutierrez/vim-better-comments'
 call plug#end()
 
 " <!-- Color Scheme -->
@@ -78,3 +85,5 @@ highlight ColorColumn ctermbg=0 guibg=#4c566a
 highlight Normal ctermfg=white ctermbg=black
 autocmd ColorScheme * highlight CursorLineNr cterm=bold term=bold gui=bold
 
+" Load lua stuff
+:luafile ~/.config/nvim/lua/init.lua
