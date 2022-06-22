@@ -60,16 +60,16 @@ def options():
 
 def backup_if_exists(target_path):
     subprocess.call([
-        f"[ -f \"{target_path}\" ] && mv -f \"{target}\" \"{target}.BAK\"",
+        f"[ -f \"{target_path}\" ] && sudo mv -f \"{target_path}\" \"{target_path}.BAK\"",
         "||",
-        f"[ -d \"{target_path}\" ] && mv -f \"{target}\" \"{target}.BAK\""
+        f"[ -d \"{target_path}\" ] && sudo mv -f \"{target_path}\" \"{target_path}.BAK\""
     ], shell=True)
 
 
 def symlink(source_path, target_path):
     backup_if_exists(target_path)
     subprocess.call([
-        f"ln -sf \"{source_path}\" \"{target_path}\""
+        f"sudo ln -sf \"{source_path}\" \"{target_path}\""
     ], shell=True)
     print(f"\033[34m{source_path}\033[37m --> \033[33m{target_path}\033[37m")
 
@@ -77,7 +77,7 @@ def symlink(source_path, target_path):
 def copy(source_path, target_path):
     backup_if_exists(target_path)
     subprocess.call([
-        f"cp -rf \"{source_path}\" \"{target_path}\""
+        f"sudo cp -rf \"{source_path}\" \"{target_path}\""
     ], shell=True)
     print(f"\033[34m{source_path}\033[37m --> \033[33m{target_path}\033[37m")
 
