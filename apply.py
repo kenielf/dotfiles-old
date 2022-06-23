@@ -22,10 +22,11 @@ def verify_euid():
 
 
 def check_deps():
-    program_l = ["sudo", "python3", "alibaba"]
+    program_l = ["sudo", "python3"]
     missing_l = []
     for program in program_l:
-        exit_c = subprocess.run(["which", program], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode
+        exit_c = subprocess.run(
+            ["which", program], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode
         if exit_c != 0:
             missing_l.append(program)
     if len(missing_l) != 0:
@@ -35,10 +36,10 @@ def check_deps():
 def preset_list(i_pwd):
     subfolders = [f.path for f in os.scandir(i_pwd) if f.is_dir()]
     ignore = [
-    f"{i_pwd}/.git",
-    f"{i_pwd}/doc",
-    f"{i_pwd}/img",
-    f"{i_pwd}/scripts"
+        f"{i_pwd}/.git",
+        f"{i_pwd}/doc",
+        f"{i_pwd}/img",
+        f"{i_pwd}/scripts"
     ]
     return [file.replace(f"{i_pwd}/", "") for file in subfolders if file not in ignore]
 
