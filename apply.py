@@ -21,13 +21,18 @@ def verify_euid():
         terminate("User must not be root!")
 
 
-def preset_list():
-    # TODO: Make this function parse the repository instead of
-    # *   returning a single manually-edited list.
-    return ["insp3442-arch"]
+def preset_list(i_pwd):
+    subfolders = [f.path for f in os.scandir(i_pwd) if f.is_dir()]
+    ignore = [
+    f"{i_pwd}/.git",
+    f"{i_pwd}/doc",
+    f"{i_pwd}/img",
+    f"{i_pwd}/scripts"
+    ]
+    return [file.replace(f"{i_pwd}/", "") for file in subfolders if file not in ignore]
 
 
-def options():
+def options(i_pwd):
     try:
         parser = argparse.ArgumentParser(
             description="Dotfiles Configuration Applier in Python."
@@ -39,7 +44,7 @@ def options():
             nargs=1,
             default=None,
             type=str,
-            choices=preset_list(),
+            choices=preset_list(i_pwd),
             required=True,
             help="Choose the preset to apply.",
             dest="preset"
@@ -153,7 +158,7 @@ if __name__ == "__main__":
     # * <-- Get the current working directory -->
     cwd = os.getcwd()
     # * <-- Get user options and run main funct -->
-    opts = options()
+    opts = options(cwd)
     try:
         main(cwd, opts.preset[0], opts.skip_confirm)
     except KeyboardInterrupt:
