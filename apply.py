@@ -59,10 +59,14 @@ def options():
 
 
 def backup_if_exists(target_path):
+    # TODO: Properly investigate the behaviour behind existing directories
+    # For the time being, copy and remove, rather than just moving or copying
+    # seems to the trick well enough
+    cp_cmd = f"sudo cp -rf \"{target_path}\" \"{target_path}.BAK\""
+    rm_cmd = f"sudo rm -rf \"{target_path}\""
     subprocess.call([
-        f"[ -f \"{target_path}\" ] && sudo cp -rf \"{target_path}\" \"{target_path}.BAK\"",
-        "||",
-        f"[ -d \"{target_path}\" ] && sudo cp -rf \"{target_path}\" \"{target_path}.BAK\""
+        f"[ -f \"{target_path}\" ] && {cp_cmd} && {rm_cmd}", "||",
+        f"[ -d \"{target_path}\" ] && {cp_cmd} && {rm_cmd}"
     ], shell=True)
 
 
