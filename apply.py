@@ -98,16 +98,15 @@ def main(active_dir, preset, skip=False):
             print(f"\033[33mWarning: this will change system files!\033[37m")
             confirm_s = input("Apply configuration? [y/N]\n > ").upper()
         # * <-- Parse input -->
-        if confirm_s == "Y" or confirm_s == "YES" or skip:
+        if confirm_s.startswith("Y"):
             break
-        elif confirm_s == "N" or confirm_s == "NO":
+        elif confirm_s.startswith("N"):
             terminate("Not applying, exiting...")
         else:
             print("Invalid choice, try again.")
             continue
     # * <-- Read details.json and other files contained in the presets -->
-    preset_json = str(f"{active_dir}/{preset}/details.json")
-    with open(preset_json, "r") as content:
+    with open(f"{active_dir}/{preset}/details.json", "r") as content:
         data = json.loads(content.read())
         with open(f"{active_dir}/{data['preset_header']}") as header:
             preset_logo = header.read()
