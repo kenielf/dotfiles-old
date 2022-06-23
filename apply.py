@@ -21,6 +21,17 @@ def verify_euid():
         terminate("User must not be root!")
 
 
+def check_deps():
+    program_l = ["sudo", "python3", "alibaba"]
+    missing_l = []
+    for program in program_l:
+        exit_c = subprocess.run(["which", program], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode
+        if exit_c != 0:
+            missing_l.append(program)
+    if len(missing_l) != 0:
+        terminate(f"Missing: {', '.join([str(i) for i in missing_l])}")
+
+
 def preset_list(i_pwd):
     subfolders = [f.path for f in os.scandir(i_pwd) if f.is_dir()]
     ignore = [
@@ -155,6 +166,8 @@ if __name__ == "__main__":
     # * <-- Make sure this program is running on linux and user is not root -->
     verify_os()
     verify_euid()
+    # * <-- Check dependencies -->
+    check_deps()
     # * <-- Get the current working directory -->
     cwd = os.getcwd()
     # * <-- Get user options and run main funct -->
