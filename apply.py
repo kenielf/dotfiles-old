@@ -88,17 +88,27 @@ def backup_if_exists(target_path):
 
 
 def symlink(source_path, target_path):
+    parent_dir = ''.join(target_path.rpartition("/")[0:1])
+    # Create the folder if the parent directory does not exist
+    subprocess.call([
+        f"[ ! -d \"{parent_dir}\" ] && sudo mkdir -p \"{parent_dir}\""
+    ],shell=True)
     backup_if_exists(target_path)
     subprocess.call([
-        f"sudo ln -sf \"{source_path}\" \"{target_path}\""
+        f"sudo ln -sfT \"{source_path}\" \"{target_path}\""
     ], shell=True)
     print(f"\033[34m{source_path}\033[37m --> \033[33m{target_path}\033[37m")
 
 
 def copy(source_path, target_path):
+    parent_dir = ''.join(target_path.rpartition("/")[0:1])
+    # Create the folder if the parent directory does not exist
+    subprocess.call([
+        f"[ ! -d \"{parent_dir}\" ] && sudo mkdir -p \"{parent_dir}\""
+    ],shell=True)
     backup_if_exists(target_path)
     subprocess.call([
-        f"sudo cp -rf \"{source_path}\" \"{target_path}\""
+        f"sudo cp -rfT \"{source_path}\" \"{target_path}\""
     ], shell=True)
     print(f"\033[34m{source_path}\033[37m --> \033[33m{target_path}\033[37m")
 
