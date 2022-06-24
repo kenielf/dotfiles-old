@@ -28,7 +28,7 @@ exec_always --no-startup-id hsetroot -solid $bg_color &
 
 ###--- I3 COLORS ---###
 #class                  border / background / text / indicator
-client.focused          $nord08 $nord10 $nord06 $nord08
-client.unfocused        $nord03 $nord02 $nord03 $nord08
-client.focused_inactive $nord03 $nord02 $nord03 $nord08
-client.urgent           $nord10 $nord10 $nord06 $nord08
+client.focused          $nord10 $nord10 $nord06 $nord10
+client.unfocused        $nord03 $nord03 $nord03 $nord03
+client.focused_inactive $nord03 $nord03 $nord03 $nord03
+client.urgent           $nord08 $nord08 $nord06 $nord08

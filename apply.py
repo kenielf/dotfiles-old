@@ -21,13 +21,30 @@ def verify_euid():
         terminate("User must not be root!")
 
 
-def preset_list():
-    # TODO: Make this function parse the repository instead of
-    # *   returning a single manually-edited list.
-    return ["insp3442-arch"]
+def check_deps():
+    program_l = ["sudo", "python3"]
+    missing_l = []
+    for program in program_l:
+        exit_c = subprocess.run(
+            ["which", program], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode
+        if exit_c != 0:
+            missing_l.append(program)
+    if len(missing_l) != 0:
+        terminate(f"Missing: {', '.join([str(i) for i in missing_l])}")
 
 
-def options():
+def preset_list(i_pwd):
+    subfolders = [f.path for f in os.scandir(i_pwd) if f.is_dir()]
+    ignore = [
+        f"{i_pwd}/.git",
+        f"{i_pwd}/doc",
+        f"{i_pwd}/img",
+        f"{i_pwd}/scripts"
+    ]
+    return [file.replace(f"{i_pwd}/", "") for file in subfolders if file not in ignore]
+
+
+def options(i_pwd):
     try:
         parser = argparse.ArgumentParser(
             description="Dotfiles Configuration Applier in Python."
@@ -39,7 +56,7 @@ def options():
             nargs=1,
             default=None,
             type=str,
-            choices=preset_list(),
+            choices=preset_list(i_pwd),
             required=True,
             help="Choose the preset to apply.",
             dest="preset"
@@ -59,10 +76,14 @@ def options():
 
 
 def backup_if_exists(target_path):
+    # TODO: Properly investigate the behaviour behind existing directories
+    # For the time being, copy and remove, rather than just moving or copying
+    # seems to the trick well enough
+    cp_cmd = f"sudo cp -rf \"{target_path}\" \"{target_path}.BAK\""
+    rm_cmd = f"sudo rm -rf \"{target_path}\""
     subprocess.call([
-        f"[ -f \"{target_path}\" ] && sudo mv -f \"{target_path}\" \"{target_path}.BAK\"",
-        "||",
-        f"[ -d \"{target_path}\" ] && sudo mv -f \"{target_path}\" \"{target_path}.BAK\""
+        f"[ -f \"{target_path}\" ] && {cp_cmd} && {rm_cmd}", "||",
+        f"[ -d \"{target_path}\" ] && {cp_cmd} && {rm_cmd}"
     ], shell=True)
 
 
@@ -98,16 +119,15 @@ def main(active_dir, preset, skip=False):
             print(f"\033[33mWarning: this will change system files!\033[37m")
             confirm_s = input("Apply configuration? [y/N]\n > ").upper()
         # * <-- Parse input -->
-        if confirm_s == "Y" or confirm_s == "YES" or skip:
+        if confirm_s.startswith("Y"):
             break
-        elif confirm_s == "N" or confirm_s == "NO":
+        elif confirm_s.startswith("N"):
             terminate("Not applying, exiting...")
         else:
             print("Invalid choice, try again.")
             continue
     # * <-- Read details.json and other files contained in the presets -->
-    preset_json = str(f"{active_dir}/{preset}/details.json")
-    with open(preset_json, "r") as content:
+    with open(f"{active_dir}/{preset}/details.json", "r") as content:
         data = json.loads(content.read())
         with open(f"{active_dir}/{data['preset_header']}") as header:
             preset_logo = header.read()
@@ -139,16 +159,20 @@ def main(active_dir, preset, skip=False):
         source = f"{active_dir}/{preset}/{file['source']}".replace("//", "/")
         message = file['message']
         warn(source, message)
+    # Finish
+    print("Installed dotfiles with directory backup enabled")
 
 
 if __name__ == "__main__":
     # * <-- Make sure this program is running on linux and user is not root -->
     verify_os()
     verify_euid()
+    # * <-- Check dependencies -->
+    check_deps()
     # * <-- Get the current working directory -->
     cwd = os.getcwd()
     # * <-- Get user options and run main funct -->
-    opts = options()
+    opts = options(cwd)
     try:
         main(cwd, opts.preset[0], opts.skip_confirm)
     except KeyboardInterrupt:
