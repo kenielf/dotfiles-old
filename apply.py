@@ -88,6 +88,12 @@ def backup_if_exists(target_path):
 
 
 def symlink(source_path, target_path):
+    parent_dir = target_path.rpartition("/")[0:1]
+    print(f"{target_path}: {parent_dir}")
+    # Create the folder if the parent directory does not exist
+    subprocess.call([
+        f"sudo mkdir -p \"{parent_dir}\""
+    ],shell=True)
     backup_if_exists(target_path)
     subprocess.call([
         f"sudo ln -sf \"{source_path}\" \"{target_path}\""
@@ -96,6 +102,12 @@ def symlink(source_path, target_path):
 
 
 def copy(source_path, target_path):
+    parent_dir = target_path.rpartition("/")[0:1]
+    print(f"{target_path}: {parent_dir}")
+    # Create the folder if the parent directory does not exist
+    subprocess.call([
+        f"sudo mkdir -p \"{parent_dir}\""
+    ],shell=True)
     backup_if_exists(target_path)
     subprocess.call([
         f"sudo cp -rf \"{source_path}\" \"{target_path}\""
