@@ -11,17 +11,15 @@ def terminate(error_s: str, error_n: str = 1):
     sys.exit(error_n)
 
 
-def verify_os():
+def background_checks():
+    issue_l = []
+    # Verify the system
     if sys.platform != "linux":
         terminate("This script must only be run on linux!")
-
-
-def verify_euid():
+    # Check EUID
     if os.geteuid() == 0:
-        terminate("User must not be root!")
-
-
-def check_deps():
+        issue_l.append("User must not be root!")
+    # Check dependencies
     program_l = ["sudo", "python3"]
     missing_l = []
     for program in program_l:
@@ -30,7 +28,8 @@ def check_deps():
         if exit_c != 0:
             missing_l.append(program)
     if len(missing_l) != 0:
-        terminate(f"Missing: {', '.join([str(i) for i in missing_l])}")
+        issue_l.append(f"Missing commands: {', '.join([str(i) for i in missing_l])}!")
+    terminate('; '.join(issue_l)) if len(issue_l) != 0 else exit
 
 
 def preset_list(i_pwd):
@@ -174,11 +173,8 @@ def main(active_dir, preset, skip=False):
 
 
 if __name__ == "__main__":
-    # * <-- Make sure this program is running on linux and user is not root -->
-    verify_os()
-    verify_euid()
-    # * <-- Check dependencies -->
-    check_deps()
+    # * <-- Make sure the presets can be applied in the system -->
+    background_checks()
     # * <-- Get the current working directory -->
     cwd = os.getcwd()
     # * <-- Get user options and run main funct -->
