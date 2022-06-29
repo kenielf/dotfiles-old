@@ -92,7 +92,7 @@ def symlink(source_path, target_path):
     # Create the folder if the parent directory does not exist
     subprocess.call([
         f"[ ! -d \"{parent_dir}\" ] && sudo mkdir -p \"{parent_dir}\""
-    ],shell=True)
+    ], shell=True)
     backup_if_exists(target_path)
     subprocess.call([
         f"sudo ln -sfT \"{source_path}\" \"{target_path}\""
@@ -105,7 +105,7 @@ def copy(source_path, target_path):
     # Create the folder if the parent directory does not exist
     subprocess.call([
         f"[ ! -d \"{parent_dir}\" ] && sudo mkdir -p \"{parent_dir}\""
-    ],shell=True)
+    ], shell=True)
     backup_if_exists(target_path)
     subprocess.call([
         f"sudo cp -rfT \"{source_path}\" \"{target_path}\""
