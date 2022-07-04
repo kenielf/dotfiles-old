@@ -40,7 +40,7 @@ def preset_list(i_pwd):
         f"{i_pwd}/img",
         f"{i_pwd}/scripts"
     ]
-    return [file.replace(f"{i_pwd}/", "") for file in subfolders if file not in ignore]
+    return [file.replace(f"{i_pwd}/", "") for file in subfolders if file not in ignore and os.path.isfile(f"{file}/details.json")]
 
 
 def options(i_pwd):
