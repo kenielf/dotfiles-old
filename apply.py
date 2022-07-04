@@ -28,7 +28,9 @@ def background_checks():
         if exit_c != 0:
             missing_l.append(program)
     if len(missing_l) != 0:
-        issue_l.append(f"Missing commands: {', '.join([str(i) for i in missing_l])}!")
+        issue_l.append(
+            f"Missing commands: {', '.join([str(i) for i in missing_l])}!"
+        )
     terminate('; '.join(issue_l)) if len(issue_l) != 0 else exit
 
 
