@@ -6,7 +6,7 @@ import json
 import subprocess
 
 
-def terminate(error_s: str, error_n: str = 1):
+def terminate(error_s: str, error_n: str = "1"):
     print(f"\033[31m[{error_n}] Error: \033[37m{error_s}")
     sys.exit(error_n)
 
@@ -45,7 +45,7 @@ def preset_list(i_pwd):
     return [file.replace(f"{i_pwd}/", "") for file in subfolders if file not in ignore and os.path.isfile(f"{file}/details.json")]
 
 
-def options(i_pwd):
+def options():
     try:
         parser = argparse.ArgumentParser(
             description="Dotfiles Configuration Applier in Python."
@@ -57,23 +57,40 @@ def options(i_pwd):
             nargs=1,
             default=None,
             type=str,
-            choices=preset_list(i_pwd),
+            choices=preset_list(os.getcwd()),
             required=True,
             help="Choose the preset to apply.",
             dest="preset"
         )
         parser.add_argument(
-            "--noconfirm", "-y",
+            "--no-confirm", "-y",
             action="store_true",
             required=False,
             help="Skip the confirmation prompt. Not recommended.",
             dest="skip_confirm"
         )
+        parser.add_argument(
+            "--no-color",
+            action="store_false",
+            required=False,
+            help="Disable color output",
+            dest="color"
+        )
         # * END ARGS
         args = parser.parse_args()
         return args
     except (argparse.ArgumentError, argparse.ArgumentTypeError) as error:
-        terminate(error)
+        terminate(str(error))
+
+
+def backup_if_exists(target_path):
+    cp_cmd = f"sudo cp -rfT \"{target_path}\ \"{target_path}.BAK\""
+    rm_cmd = f"sudo rm -rfT \"{target_path}\""
+    subprocess.call([
+        f"", "||",
+        f""
+    ], shell=True)
+    pass
 
 
 def backup_if_exists(target_path):
@@ -175,14 +192,15 @@ def main(active_dir, preset, skip=False):
 
 
 if __name__ == "__main__":
-    # * <-- Make sure the presets can be applied in the system -->
-    background_checks()
+    # * <-- Get user options and run main funct -->
+    opts = options()
     # * <-- Get the current working directory -->
     cwd = os.getcwd()
-    # * <-- Get user options and run main funct -->
-    opts = options(cwd)
+    # * <-- Make sure the presets can be applied in the system -->
+    background_checks()
     try:
         main(cwd, opts.preset[0], opts.skip_confirm)
     except KeyboardInterrupt:
         print("\r\033[31mCancelling.\033[37m")
-        exit
+        exit()
+
