@@ -57,6 +57,7 @@ set history=10000
 set viminfo+=:10000
 
 " <!-- Plugins -->
+" Run :PlugInstall to update
 call plug#begin()
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'jiangmiao/auto-pairs'
@@ -69,6 +70,9 @@ Plug 'nvim-lualine/lualine.nvim'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'jbgutierrez/vim-better-comments'
 call plug#end()
+
+" <-- COC -->
+" CocInstall coc-json coc-tsserver coc-pyright
 
 " <!-- Color Scheme -->
 " Nord Tweaks
