@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import sys
 import os
 import argparse
@@ -6,22 +6,25 @@ import json
 import subprocess
 
 
-def terminate(error_s: str, error_n: str = 1):
-    print(f"\033[31m[{error_n}] Error: \033[37m{error_s}")
+def terminate(error_s: str, error_n: int = 1, colors=False):
+    if colors == False:
+        colors = {
+            "RED": "",
+            "RESET": ""
+        }
+    print(f"{colors['RED']}[{error_n}] Error: {colors['RESET']}{error_s}")
     sys.exit(error_n)
 
 
-def verify_os():
+def background_checks(colors):
+    issue_l = []
+    # Verify the system
     if sys.platform != "linux":
-        terminate("This script must only be run on linux!")
-
-
-def verify_euid():
+        terminate("This script must only be run on linux!", 1, colors)
+    # Check EUID
     if os.geteuid() == 0:
-        terminate("User must not be root!")
-
-
-def check_deps():
+        issue_l.append("User must not be root!")
+    # Check dependencies
     program_l = ["sudo", "python3"]
     missing_l = []
     for program in program_l:
@@ -30,7 +33,9 @@ def check_deps():
         if exit_c != 0:
             missing_l.append(program)
     if len(missing_l) != 0:
-        terminate(f"Missing: {', '.join([str(i) for i in missing_l])}")
+        issue_l.append(
+            f"Missing commands: {', '.join([str(i) for i in missing_l])}!")
+    terminate('; '.join(issue_l), 1, colors) if len(issue_l) != 0 else exit
 
 
 def preset_list(i_pwd):
@@ -41,7 +46,11 @@ def preset_list(i_pwd):
         f"{i_pwd}/img",
         f"{i_pwd}/scripts"
     ]
-    return [file.replace(f"{i_pwd}/", "") for file in subfolders if file not in ignore]
+    preset_l = []
+    for file in subfolders:
+        if file not in ignore and os.path.isfile(f"{file}/details.json"):
+            preset_l.append(file.replace(f"{i_pwd}/", ""))
+    return preset_l
 
 
 def options(i_pwd):
@@ -68,11 +77,18 @@ def options(i_pwd):
             help="Skip the confirmation prompt. Not recommended.",
             dest="skip_confirm"
         )
+        parser.add_argument(
+            "--nocolor",
+            action="store_true",
+            required=False,
+            help="Disable color output",
+            dest="disable_color"
+        )
         # * END ARGS
         args = parser.parse_args()
         return args
     except (argparse.ArgumentError, argparse.ArgumentTypeError) as error:
-        terminate(error)
+        terminate(error, 1, colors=False)
 
 
 def backup_if_exists(target_path):
@@ -92,33 +108,36 @@ def symlink(source_path, target_path):
     # Create the folder if the parent directory does not exist
     subprocess.call([
         f"[ ! -d \"{parent_dir}\" ] && sudo mkdir -p \"{parent_dir}\""
-    ],shell=True)
+    ], shell=True)
     backup_if_exists(target_path)
     subprocess.call([
         f"sudo ln -sfT \"{source_path}\" \"{target_path}\""
     ], shell=True)
-    print(f"\033[34m{source_path}\033[37m --> \033[33m{target_path}\033[37m")
+    print(
+        f"{colors['BLU']}{source_path}{colors['RESET']} --> {colors['YLW']}{target_path}{colors['RESET']}")
 
 
-def copy(source_path, target_path):
+def copy(source_path, target_path, colors):
     parent_dir = ''.join(target_path.rpartition("/")[0:1])
     # Create the folder if the parent directory does not exist
     subprocess.call([
         f"[ ! -d \"{parent_dir}\" ] && sudo mkdir -p \"{parent_dir}\""
-    ],shell=True)
+    ], shell=True)
     backup_if_exists(target_path)
     subprocess.call([
         f"sudo cp -rfT \"{source_path}\" \"{target_path}\""
     ], shell=True)
-    print(f"\033[34m{source_path}\033[37m --> \033[33m{target_path}\033[37m")
+    print(
+        f"{colors['BLU']}{source_path}{colors['RESET']} --> {colors['YLW']}{target_path}{colors['RESET']}")
 
 
-def warn(source_path, message_str):
+def warn(source_path, message_str, colors):
     # TODO: Generate a log for the warnings.
-    print(f"\033[33m>> Warning for \033[37m{source_path}\n{message_str}")
+    print(
+        f"{colors['YLW']}>> Warning for {colors['RESET']}{source_path}\n{message_str}")
 
 
-def main(active_dir, preset, skip=False):
+def main(active_dir, preset, colors, skip=False):
     # * <-- Confirm preset application -->
     while True:
         # * <-- Skip user input if flag is set -->
@@ -126,13 +145,14 @@ def main(active_dir, preset, skip=False):
             print("Skipping user input...")
             break
         else:
-            print(f"\033[33mWarning: this will change system files!\033[37m")
+            print(
+                f"{colors['YLW']}Warning: this will change system files!{colors['RESET']}")
             confirm_s = input("Apply configuration? [y/N]\n > ").upper()
         # * <-- Parse input -->
         if confirm_s.startswith("Y"):
             break
         elif confirm_s.startswith("N"):
-            terminate("Not applying, exiting...")
+            terminate("Not applying, exiting...", 1, colors)
         else:
             print("Invalid choice, try again.")
             continue
@@ -145,7 +165,7 @@ def main(active_dir, preset, skip=False):
             preset_packages = packages.read()
     # * <-- Set the correct values -->
     print(
-        f"Applying preset\n\033[34m{preset_logo}\033[37m",
+        f"Applying preset\n{colors['BLU']}{preset_logo}{colors['RESET']}",
         f"-- {data['description']} --",
         sep=''
     )
@@ -156,35 +176,56 @@ def main(active_dir, preset, skip=False):
         source = f"{active_dir}/{preset}/{file['source']}".replace("//", "/")
         target = f"{file['target']}".replace(
             "$HOME", f"/home/{os.environ.get('USER', os.environ.get('USERNAME'))}")
-        symlink(source, target)
+        symlink(source, target, colors)
     # Copy
     print("Copying files...")
     for file in data['file_actions']['copy']:
         source = f"{active_dir}/{preset}/{file['source']}".replace("//", "/")
         target = f"{file['target']}".replace(
             "$HOME", f"/home/{os.environ.get('USER', os.environ.get('USERNAME'))}")
-        copy(source, target)
+        copy(source, target, colors)
     # Warn
     for file in data['file_actions']['warn']:
         source = f"{active_dir}/{preset}/{file['source']}".replace("//", "/")
         message = file['message']
-        warn(source, message)
+        warn(source, message, colors)
     # Finish
     print("Installed dotfiles with directory backup enabled")
 
 
 if __name__ == "__main__":
-    # * <-- Make sure this program is running on linux and user is not root -->
-    verify_os()
-    verify_euid()
-    # * <-- Check dependencies -->
-    check_deps()
     # * <-- Get the current working directory -->
     cwd = os.getcwd()
     # * <-- Get user options and run main funct -->
     opts = options(cwd)
+    if opts.disable_color:
+        clr = {
+            "BLK": "",
+            "RED": "",
+            "GRN": "",
+            "YLW": "",
+            "BLU": "",
+            "MGT": "",
+            "CYN": "",
+            "WHT": "",
+            "RESET": ""
+        }
+    else:
+        clr = {
+            "BLK": "\033[30m",
+            "RED": "\033[31m",
+            "GRN": "\033[32m",
+            "YLW": "\033[33m",
+            "BLU": "\033[34m",
+            "MGT": "\033[35m",
+            "CYN": "\033[36m",
+            "WHT": "\033[37m",
+            "RESET": "\033[0m"
+        }
+    # * <-- Make sure the presets can be applied in the system -->
+    background_checks(clr)
     try:
-        main(cwd, opts.preset[0], opts.skip_confirm)
+        main(cwd, opts.preset[0], clr, opts.skip_confirm)
     except KeyboardInterrupt:
-        print("\r\033[31mCancelling.\033[37m")
+        print(f"\r{clr['RED']}Cancelling.{clr['RESET']}")
         exit
