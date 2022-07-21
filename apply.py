@@ -6,7 +6,7 @@ import json
 import subprocess
 
 
-def terminate(error_s: str, error_n: str = "1"):
+def terminate(error_s: str, error_n: str = 1):
     print(f"\033[31m[{error_n}] Error: \033[37m{error_s}")
     sys.exit(error_n)
 
@@ -28,9 +28,7 @@ def background_checks():
         if exit_c != 0:
             missing_l.append(program)
     if len(missing_l) != 0:
-        issue_l.append(
-            f"Missing commands: {', '.join([str(i) for i in missing_l])}!"
-        )
+        issue_l.append(f"Missing commands: {', '.join([str(i) for i in missing_l])}!")
     terminate('; '.join(issue_l)) if len(issue_l) != 0 else exit
 
 
@@ -42,10 +40,14 @@ def preset_list(i_pwd):
         f"{i_pwd}/img",
         f"{i_pwd}/scripts"
     ]
-    return [file.replace(f"{i_pwd}/", "") for file in subfolders if file not in ignore and os.path.isfile(f"{file}/details.json")]
+    preset_l = []
+    for file in subfolders:
+        if file not in ignore and os.path.isfile(f"{file}/details.json"):
+            preset_l.append(file.replace(f"{i_pwd}/", ""))
+    return preset_l
 
 
-def options():
+def options(i_pwd):
     try:
         parser = argparse.ArgumentParser(
             description="Dotfiles Configuration Applier in Python."
@@ -57,40 +59,23 @@ def options():
             nargs=1,
             default=None,
             type=str,
-            choices=preset_list(os.getcwd()),
+            choices=preset_list(i_pwd),
             required=True,
             help="Choose the preset to apply.",
             dest="preset"
         )
         parser.add_argument(
-            "--no-confirm", "-y",
+            "--noconfirm", "-y",
             action="store_true",
             required=False,
             help="Skip the confirmation prompt. Not recommended.",
             dest="skip_confirm"
         )
-        parser.add_argument(
-            "--no-color",
-            action="store_false",
-            required=False,
-            help="Disable color output",
-            dest="color"
-        )
         # * END ARGS
         args = parser.parse_args()
         return args
     except (argparse.ArgumentError, argparse.ArgumentTypeError) as error:
-        terminate(str(error))
-
-
-def backup_if_exists(target_path):
-    cp_cmd = f"sudo cp -rfT \"{target_path}\ \"{target_path}.BAK\""
-    rm_cmd = f"sudo rm -rfT \"{target_path}\""
-    subprocess.call([
-        f"", "||",
-        f""
-    ], shell=True)
-    pass
+        terminate(error)
 
 
 def backup_if_exists(target_path):
@@ -192,15 +177,14 @@ def main(active_dir, preset, skip=False):
 
 
 if __name__ == "__main__":
-    # * <-- Get user options and run main funct -->
-    opts = options()
-    # * <-- Get the current working directory -->
-    cwd = os.getcwd()
     # * <-- Make sure the presets can be applied in the system -->
     background_checks()
+    # * <-- Get the current working directory -->
+    cwd = os.getcwd()
+    # * <-- Get user options and run main funct -->
+    opts = options(cwd)
     try:
         main(cwd, opts.preset[0], opts.skip_confirm)
     except KeyboardInterrupt:
         print("\r\033[31mCancelling.\033[37m")
-        exit()
-
+        exit
