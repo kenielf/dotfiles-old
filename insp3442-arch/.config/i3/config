@@ -85,6 +85,7 @@ for_window [class="Anki" title="Browse*"] floating enable
 for_window [class="pomotroid"] floating enable, $border_size
 for_window [class="Zenity"] floating enable, $border_size
 for_window [class="Nm-connection-editor"] floating enable
+for_window [class="TelegramDesktop"] floating enable, $border_size, sticky enable
 
 # Workspace 1 - Browsers
 assign [class="librewolf"] $ws01
@@ -234,8 +235,8 @@ bindsym $super+Control+Up resize shrink height 10px or 10ppt
 bindsym $super+Control+Right resize grow width 10px or 10ppt
 
 
-bindsym $super+z split h; exec notify-send -t 1000 -i "window-manager" "i3" "Tiling horizontally."
-bindsym $super+x split v; exec notify-send -t 1000 -i "window-manager" "i3" "Tiling vertically."
+bindsym $super+z split h; exec --no-startup-id notify-send -t 1000 -i "window-manager" "i3" "Tiling horizontally."
+bindsym $super+x split v; exec --no-startup-id notify-send -t 1000 -i "window-manager" "i3" "Tiling vertically."
 #bindsym $super+z split h; exec notify-send -a "i3wm" "Tiling horizontally"
 #bindsym $super+x split v; exec notify-send -a "i3wm" "Tiling vertically."
 bindsym $super+f fullscreen
@@ -250,10 +251,10 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% && $refresh_i3status
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
 bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-bindsym XF86AudioPause exec --no-startup-id mpc toggle
-bindsym XF86AudioStop exec --no-startup-id mpc stop
-bindsym XF86AudioNext exec --no-startup-id mpc next
-bindsym XF86AudioPrev exec --no-startup-id mpc prev
+bindsym XF86AudioPause exec --no-startup-id playerctl play-pause
+bindsym XF86AudioStop exec --no-startup-id playerctl stop
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 bindsym $super+XF86AudioRaiseVolume exec --no-startup-id mpc volume +5
 bindsym $super+XF86AudioLowerVolume exec --no-startup-id mpc volume -5
 # Special Keys

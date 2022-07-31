@@ -3,17 +3,25 @@
 set -eux
 
 # <!-- Set the temporary file location -->
-tmp_file="/tmp/local-i3hidden"
+tmp_file="/tmp/i3-hidden"
 
 # <!-- Check if the temporary file exists -->
 if [ -f "$tmp_file" ]; then
+    id="$(cat $tmp_file | awk -F ':' '{print $1}')"
+    float="$(cat $tmp_file | awk -F ':' '{print $2}')"
     # <!-- Unhide the window and delete the file -->
-    i3-msg [class="$(cat $tmp_file)"] scratchpad show && rm $tmp_file || rm $tmp_file
+    i3-msg [id=$id] scratchpad show floating $float && rm -f $tmp_file || rm $tmp_file
+    notify-send -t 1000 -i "window-manager" "i3" "Restored"
 else
     # <!-- Get the current active window -->
-    act_xpr="$(xprop -id "$(xdotool getwindowfocus)")"
-    act_cls="$(echo "$act_xpr" | awk '$1 == "WM_CLASS(STRING)" {print $NF}')"
+    act_xpr="$(xwininfo -id $(xdotool getwindowfocus))"
+    act_id="$(xwininfo -id $(xdotool getwindowfocus) | grep -oP '(0x[\d\w]*)' | head -n1)"
+    if [ -n "$(echo "$(xprop -id "$act_id" )" | grep -oP 'I3_FLOATING_WINDOW\(CARDINAL\) = 1')" ]; then
+        floating="enable"
+    else
+        floating="disable"
+    fi
     # <!-- Hide the window -->
-    i3-msg [class="$act_cls"] move scratchpad
-    echo "$act_cls" > $tmp_file
+    i3-msg [id=$act_id] move scratchpad && echo "${act_id}:${floating}" > $tmp_file
+    notify-send -t 1000 -i "window-manager" "i3" "Hidden"
 fi
