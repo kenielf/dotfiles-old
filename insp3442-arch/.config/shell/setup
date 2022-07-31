@@ -1,4 +1,4 @@
-###--- COLORS ---###
+# vi: ft=sh
 # Have less display colours
 # from: https://wiki.archlinux.org/index.php/Color_output_in_console#man
 export LESS_TERMCAP_mb=$'\e[1;31m'     # begin bold
@@ -15,11 +15,17 @@ export GROFF_NO_SGR=1                  # for konsole and gnome-terminal
 export PATH="$PATH:/home/$USER/.scripts/src:/home/$USER/.dotnet/tools"
 
 ###--- VARIABLES ---###
+# Shell
+export USR_SHELL="$(ps -p $$ | awk '{print $4}' | tail -n+2)"
+
 # Editor
 export EDITOR=nvim
 
 # .NET telemetry opt out
 export DOTNET_CLI_TELEMETRY_OPTOUT=1
+
+# Autojump
+. /usr/share/autojump/autojump.$USR_SHELL
 
 # GTK4 theme
 export GTK_THEME="Arc:dark"

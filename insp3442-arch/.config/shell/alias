@@ -64,7 +64,7 @@ function gitpath() {
 alias listpkg="pacman -Qq | fzf --multi --reverse --preview 'pacman -Qi {1}' --preview-window=70%,wrap"
 alias install="yay -S"
 alias update="yay -Syyuu"
-alias fupdate="yay -Syyuu --noconfirm"
+alias fupdate="yay -Syyuu --noconfirm && paccache -r -k 1"
 alias pkgcache="yay -Scc"
 
 # Development
