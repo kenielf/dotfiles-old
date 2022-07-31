@@ -1,0 +1,28 @@
+- By Felipe C. Ramos -
+-- Darker --
+NORD_-1 = #1C1F27
+
+- By Arctic Ice Studio -
+-- Polar Night --
+NORD_00 = #2E3440
+NORD_01 = #3b4252
+NORD_02 = #434c5e
+NORD_03 = #4c566a
+
+-- Snow Storm --
+NORD_04 = #d8dee9
+NORD_05 = #e5e9f0
+NORD_06 = #eceff4
+
+-- Frost --
+NORD_07 = #8fbcbb
+NORD_08 = #88c0d0
+NORD_09 = #81a1c1
+NORD_10 = #5e81ac
+
+-- Aurora --
+NORD_11 = #bf616a
+NORD_12 = #d08770
+NORD_13 = #ebcb8b
+NORD_14 = #a3be8c
+NORD_15 = #b48ead
