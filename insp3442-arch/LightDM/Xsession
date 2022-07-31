@@ -67,12 +67,17 @@ lxsession &
 eval $(gnome-keyring-daemon --start)
 export SSH_AUTH_SOCK
 
+# BSPWM Java Tweak
+export _JAVA_AWT_WM_NONREPARENTING=1
+
 # Theming
+export QT_STYLE_OVERRIDE=kvantum
 export QT_QPA_PLATFORMTHEME=qt5ct
 source /etc/utheme/themerc
 
 # Input Manager
 numlockx &
+setxkbmap -layout br
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export GLFW_IM_MODULE=ibus
