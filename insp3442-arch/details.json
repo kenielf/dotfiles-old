@@ -36,6 +36,10 @@
                 "target": "/etc/udev"
             },
             {
+               "source": "/etc/modprobe.d",
+               "target": "/etc/modprobe.d"
+            },
+            {
                 "source": "/etc/utheme",
                 "target": "/etc/utheme"
             },
