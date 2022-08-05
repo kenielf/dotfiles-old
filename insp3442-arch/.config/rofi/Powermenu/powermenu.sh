@@ -51,7 +51,7 @@ case $chosen in
 	$pwr_lbl)
 		ans=$(confirm &)
 		if [[ "$ans" == "yes" || "$ans" == "Yes" || "$ans" == "YES" || "$ans" == "y" || "$ans" == "Y" ]]; then 
-			systemctl poweroff
+			pkexec systemctl poweroff
 		elif [[ "$ans" == "no" || "$ans" == "No" || "$ans" == "NO" || "$ans" == "n" || "$ans" == "N" || "$ans" == "" ]]; then
 			exit 0
 		fi
@@ -59,27 +59,22 @@ case $chosen in
 	$rbt_lbl)
 		ans=$(confirm &)
 		if [[ "$ans" == "yes" || "$ans" == "Yes" || "$ans" == "YES" || "$ans" == "y" || "$ans" == "Y" ]]; then 
-			systemctl reboot
+			pkexec systemctl reboot
 		elif [[ "$ans" == "no" || "$ans" == "No" || "$ans" == "NO" || "$ans" == "n" || "$ans" == "N" || "$ans" == "" ]]; then
 			exit 0
 		fi
 	;;
 	$lck_lbl)
-		ans=$(confirm &)
-		if [[ "$ans" == "yes" || "$ans" == "Yes" || "$ans" == "YES" || "$ans" == "y" || "$ans" == "Y" ]]; then 
-			if [ -f "/usr/bin/betterlockscreen" ];then
-				~/.config/rofi/Powermenu/lock-script &
-			elif [ -f "/usr/bin/i3lock" ]; then
-				i3lock &
-			fi
-		elif [[ "$ans" == "no" || "$ans" == "No" || "$ans" == "NO" || "$ans" == "n" || "$ans" == "N" || "$ans" == "" ]]; then
-			exit 0
-		fi
+        if [ -f "/usr/bin/betterlockscreen" ]; then
+            ~/.config/rofi/Powermenu/lock-script &
+        elif [ -f "/usr/bin/i3lock" ]; then
+            i3lock &
+        fi
 	;;
 	$spd_lbl)
 		ans=$(confirm &)
 		if [[ "$ans" == "yes" || "$ans" == "Yes" || "$ans" == "YES" || "$ans" == "y" || "$ans" == "Y" ]]; then 
-			systemctl suspend
+			pkexec systemctl suspend
 		elif [[ "$ans" == "no" || "$ans" == "No" || "$ans" == "NO" || "$ans" == "n" || "$ans" == "N" || "$ans" == "" ]]; then
 			exit 0
 		fi
