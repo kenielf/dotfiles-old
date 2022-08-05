@@ -70,6 +70,7 @@
 ; (gtk_accel_path "<Actions>/ThunarWindow/close-all-windows" "<Primary><Shift>w")
 ; (gtk_accel_path "<Actions>/ThunarWindow/open-trash" "")
 ; (gtk_accel_path "<Actions>/ThunarLauncher/restore" "")
+; (gtk_accel_path "<Actions>/ThunarBookmarks/633dd997dde00cbd99e1b17002b4bf78" "")
 ; (gtk_accel_path "<Actions>/ThunarWindow/open-desktop" "")
 ; (gtk_accel_path "<Actions>/ThunarBookmarks/552e5908f45152d894612bce2c59160b" "")
 ; (gtk_accel_path "<Actions>/ThunarBookmarks/78542833df895a3b496b8931bf539048" "")

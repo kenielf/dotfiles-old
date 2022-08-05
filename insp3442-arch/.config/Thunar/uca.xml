@@ -1,6 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <actions>
 <action>
+	<icon>powershell</icon>
+	<name>Run script</name>
+	<unique-id>1657539321250278-1</unique-id>
+	<command>sh -c %f</command>
+	<description>Execute a shellscript</description>
+	<patterns>*.sh</patterns>
+	<other-files/>
+</action>
+<action>
 	<icon>utilities-terminal</icon>
 	<name>Open Terminal Here</name>
 	<unique-id>1647425198661876-1</unique-id>
@@ -9,15 +18,6 @@
 	<patterns>*</patterns>
 	<startup-notify/>
 	<directories/>
-</action>
-<action>
-	<icon>wallpaper</icon>
-	<name>Set it as the wallpaper</name>
-	<unique-id>1652790135503673-1</unique-id>
-	<command>echo %f &gt;&gt; /tmp/wallpaper.txt &amp;&amp; feh --bg-fill &quot;$(tail -n1 /tmp/wallpaper.txt)&quot;</command>
-	<description>Sets the selected image as the wallpaper</description>
-	<patterns>*</patterns>
-	<image-files/>
 </action>
 <action>
 	<icon>dialog-warning</icon>
@@ -32,14 +32,5 @@
 	<other-files/>
 	<text-files/>
 	<video-files/>
-</action>
-<action>
-	<icon></icon>
-	<name>test</name>
-	<unique-id>1652791669972825-2</unique-id>
-	<command>set-wallpaper %f</command>
-	<description></description>
-	<patterns>*</patterns>
-	<image-files/>
 </action>
 </actions>
