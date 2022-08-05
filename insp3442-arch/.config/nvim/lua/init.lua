@@ -11,9 +11,7 @@ require("toggleterm").setup({
     shell = "zsh",
 })
 
-vim.g.nvim_tree_width = 25
-require("nvim-tree").setup()
-
 require('lualine').setup{
     extensions = {'nvim-tree','toggleterm'},
+    options = {theme = 'nord'}
 }

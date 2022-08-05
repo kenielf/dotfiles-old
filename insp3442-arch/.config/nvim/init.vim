@@ -60,27 +60,24 @@ set viminfo+=:10000
 " Run :PlugInstall to update
 call plug#begin()
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'jiangmiao/auto-pairs'
+"Plug 'jiangmiao/auto-pairs'
 Plug 'shaunsingh/nord.nvim'
 Plug 'akinsho/toggleterm.nvim'
-Plug 'kyazdani42/nvim-tree.lua'
+"Plug 'kyazdani42/nvim-tree.lua'
 Plug 'akinsho/bufferline.nvim'
 Plug 'lewis6991/impatient.nvim'
 Plug 'nvim-lualine/lualine.nvim'
-Plug 'kyazdani42/nvim-web-devicons'
+"Plug 'kyazdani42/nvim-web-devicons'
 Plug 'jbgutierrez/vim-better-comments'
 call plug#end()
 
-" <-- COC -->
-" CocInstall coc-json coc-tsserver coc-pyright
-
 " <!-- Color Scheme -->
 " Nord Tweaks
-let g:nord_contrast = v:true
-let g:nord_borders = v:true
 let g:nord_disable_background = v:true
+let g:nord_contrast = v:true
+let g:nord_enable_sidebar_background = v:true
 let g:nord_italic = v:true
-
+"let g:nord_borders = v:true
 " Load the colorscheme
 colorscheme nord
 
@@ -88,6 +85,37 @@ colorscheme nord
 highlight ColorColumn ctermbg=0 guibg=#4c566a
 highlight Normal ctermfg=white ctermbg=black
 autocmd ColorScheme * highlight CursorLineNr cterm=bold term=bold gui=bold
+
+" <-- COC -->
+" CocInstall coc-json coc-tsserver coc-pyright
+" Tweaks
+"highlight coc-config-notification-highlightGroup guibg=#4c566a
+highlight CocNotificationProgress guibg=#4c566a guifg=#5e81ac
+highlight CocNotificationButton guibg=#4c566a guifg=#5e81ac
+highlight CocNotificationError guibg=#4c566a guifg=#5e81ac
+highlight CocNotificationWarning guibg=#4c566a guifg=#5e81ac
+highlight CocNotificationInfo guibg=#4c566a guifg=#5e81ac
+
+" Custom Functions
+function! OpenFile()
+    " Get input
+    call inputsave()
+    let s:path = input("Open: ", expand('%:p:h'), "file")
+    while len(s:path) == 0
+        let s:path = input("Invalid. Open: ", "", "file")
+    endwhile
+    call inputrestore()
+    " Create a new tab and edit
+    execute 'tabnew'
+    execute 'edit 's:path
+endfunction
+
+" Keybindings
+" Buffer Control
+map <silent> <C-f> :call OpenFile()<CR>
+map <silent> <M-Left> :bp<CR>
+map <silent> <M-Right> :bn<CR>
+map <silent> <C-l> :bd<CR>
 
 " Load lua stuff
 :luafile ~/.config/nvim/lua/init.lua
