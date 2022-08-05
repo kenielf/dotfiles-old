@@ -86,6 +86,7 @@ for_window [class="pomotroid"] floating enable, $border_size
 for_window [class="Zenity"] floating enable, $border_size
 for_window [class="Nm-connection-editor"] floating enable
 for_window [class="TelegramDesktop"] floating enable, $border_size, sticky enable
+for_window [class="Gufw.py"] floating enable
 
 # Workspace 1 - Browsers
 assign [class="librewolf"] $ws01
@@ -164,6 +165,7 @@ for_window [class="vlc"] floating enable, $border_size, resize set 640 480, stic
 # Workspace 8 - Communication
 assign [class="discord"] $ws08
 for_window [class="discord"] $border_size
+for_window [class="discord" title="Discord Popout"] floating enable, resize set 1024 720
 assign [class="Microsoft Teams - Insiders"] $ws08
 for_window [class="Microsoft Teams - Insiders"] $border_size
 
