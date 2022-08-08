@@ -23,8 +23,8 @@ set $nord15 #b48ead
 ###--- BACKGROUND COLOR ---###
 set $bg_color "#2e3440"
 #
-exec_always --no-startup-id hsetroot -solid $bg_color &
-#exec_always --no-startup-id feh --bg-fill $wallpaper &
+#exec_always --no-startup-id hsetroot -solid $bg_color &
+exec_always --no-startup-id feh --bg-fill $UTHEME_WALLPAPER &
 
 ###--- I3 COLORS ---###
 #class                  border / background / text / indicator

@@ -4,3 +4,4 @@ UTHEME_THEME="nord"
 # <!-- Application -->
 export UTHEME_THEME
 export UTHEME_DIR="/etc/utheme/$UTHEME_THEME"
+export UTHEME_WALLPAPER="$UTHEME_DIR/wallpaper.png"
