@@ -11,7 +11,8 @@
 
 ## System Information
  - **OS:** [Arch Linux](https://archlinux.org/)
- - **Kernel:** 5.17.11-259-tkg-pds [Custom Build](https://github.com/kenielf/linux-tkg)
+ - **Kernel:** 5.17.11-259-tkg-pds [TKG](https://github.com/Frogging-Family/linux-tkg)
+   - [Custom Build](/insp3442-arch/.config/frogminer/linux-tkg.cfg)
  - **Shell:** [zsh](https://github.com/zsh-users/zsh)
    - Addons: [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions), [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting)
  - **WM:** [i3-gaps](https://github.com/Airblader/i3)
