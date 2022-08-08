@@ -14,7 +14,6 @@ set softtabstop=4
 set tabstop=4
 set expandtab
 set cin noai
-set tw=80 cc=80
 set nojoinspaces
 set formatoptions=cloqr
 set shiftwidth=4
@@ -60,14 +59,11 @@ set viminfo+=:10000
 " Run :PlugInstall to update
 call plug#begin()
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"Plug 'jiangmiao/auto-pairs'
 Plug 'shaunsingh/nord.nvim'
 Plug 'akinsho/toggleterm.nvim'
-"Plug 'kyazdani42/nvim-tree.lua'
 Plug 'akinsho/bufferline.nvim'
 Plug 'lewis6991/impatient.nvim'
 Plug 'nvim-lualine/lualine.nvim'
-"Plug 'kyazdani42/nvim-web-devicons'
 Plug 'jbgutierrez/vim-better-comments'
 call plug#end()
 
@@ -89,7 +85,6 @@ autocmd ColorScheme * highlight CursorLineNr cterm=bold term=bold gui=bold
 " <-- COC -->
 " CocInstall coc-json coc-tsserver coc-pyright
 " Tweaks
-"highlight coc-config-notification-highlightGroup guibg=#4c566a
 highlight CocNotificationProgress guibg=#4c566a guifg=#5e81ac
 highlight CocNotificationButton guibg=#4c566a guifg=#5e81ac
 highlight CocNotificationError guibg=#4c566a guifg=#5e81ac
