@@ -6,12 +6,36 @@ import json
 import subprocess
 
 
-def terminate(error_s: str, error_n: int = 1, colors=False):
-    if colors == False:
-        colors = {
+def generate_col(enable_bool):
+    if enable_bool:
+        return {
+            "BLK": "\033[30m",
+            "RED": "\033[31m",
+            "GRN": "\033[32m",
+            "YLW": "\033[33m",
+            "BLU": "\033[34m",
+            "MGT": "\033[35m",
+            "CYN": "\033[36m",
+            "WHT": "\033[37m",
+            "RESET": "\033[0m"
+        }
+    else:
+        return {
+            "BLK": "",
             "RED": "",
+            "GRN": "",
+            "YLW": "",
+            "BLU": "",
+            "MGT": "",
+            "CYN": "",
+            "WHT": "",
             "RESET": ""
         }
+
+
+def terminate(error_s: str, error_n: int = 1, colors=False):
+    if not colors == False:
+        colors = generate_col(False)
     print(f"{colors['RED']}[{error_n}] Error: {colors['RESET']}{error_s}")
     sys.exit(error_n)
 
@@ -88,7 +112,7 @@ def options(i_pwd):
         args = parser.parse_args()
         return args
     except (argparse.ArgumentError, argparse.ArgumentTypeError) as error:
-        terminate(error, 1, colors=False)
+        terminate(str(error), 1, colors=False)
 
 
 def backup_if_exists(target_path):
@@ -103,7 +127,12 @@ def backup_if_exists(target_path):
     ], shell=True)
 
 
-def symlink(source_path, target_path):
+def json_read(_active_dir: str, _data_type: str):
+    with open(f"{_active_dir}/{data[_data_type]}") as content:
+        return content.read()
+
+
+def symlink(source_path, target_path, colors):
     parent_dir = ''.join(target_path.rpartition("/")[0:1])
     # Create the folder if the parent directory does not exist
     subprocess.call([
@@ -159,10 +188,16 @@ def main(active_dir, preset, colors, skip=False):
     # * <-- Read details.json and other files contained in the presets -->
     with open(f"{active_dir}/{preset}/details.json", "r") as content:
         data = json.loads(content.read())
-        with open(f"{active_dir}/{data['preset_header']}") as header:
-            preset_logo = header.read()
-        with open(f"{active_dir}/{data['preset_packages']}") as packages:
-            preset_packages = packages.read()
+        preset_logo = json_read(active_dir, 'preset_header')
+        #with open(f"{active_dir}/{data['preset_header']}") as header:
+        #    preset_logo = header.read()
+        # TODO: Add parser for repo and aur dependencies and optional deps.
+        preset_deps = json_read(active_dir, 'dependencies')
+        #with open(f"{active_dir}/{data['dependencies']}") as dependencies:
+        #    preset_deps = dependencies.read()
+        preset_odeps = json_read(active_dir, 'preset_packages')
+        #with open(f"{active_dir}/{data['preset_packages']}") as opt_dependencies:
+        #    preset_odeps = opt_dependencies.read()
     # * <-- Set the correct values -->
     print(
         f"Applying preset\n{colors['BLU']}{preset_logo}{colors['RESET']}",
@@ -199,29 +234,9 @@ if __name__ == "__main__":
     # * <-- Get user options and run main funct -->
     opts = options(cwd)
     if opts.disable_color:
-        clr = {
-            "BLK": "",
-            "RED": "",
-            "GRN": "",
-            "YLW": "",
-            "BLU": "",
-            "MGT": "",
-            "CYN": "",
-            "WHT": "",
-            "RESET": ""
-        }
+        clr = generate_col(False)
     else:
-        clr = {
-            "BLK": "\033[30m",
-            "RED": "\033[31m",
-            "GRN": "\033[32m",
-            "YLW": "\033[33m",
-            "BLU": "\033[34m",
-            "MGT": "\033[35m",
-            "CYN": "\033[36m",
-            "WHT": "\033[37m",
-            "RESET": "\033[0m"
-        }
+        clr = generate_col(True)
     # * <-- Make sure the presets can be applied in the system -->
     background_checks(clr)
     try:
