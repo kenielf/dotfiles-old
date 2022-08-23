@@ -127,8 +127,8 @@ def backup_if_exists(target_path):
     ], shell=True)
 
 
-def json_read(_active_dir: str, _data_type: str):
-    with open(f"{_active_dir}/{data[_data_type]}") as content:
+def json_read(_data, _active_dir: str, _data_type: str):
+    with open(f"{_active_dir}/{_data[_data_type]}") as content:
         return content.read()
 
 
@@ -188,14 +188,14 @@ def main(active_dir, preset, colors, skip=False):
     # * <-- Read details.json and other files contained in the presets -->
     with open(f"{active_dir}/{preset}/details.json", "r") as content:
         data = json.loads(content.read())
-        preset_logo = json_read(active_dir, 'preset_header')
+        preset_logo = json_read(data, active_dir, 'preset_header')
         #with open(f"{active_dir}/{data['preset_header']}") as header:
         #    preset_logo = header.read()
         # TODO: Add parser for repo and aur dependencies and optional deps.
-        preset_deps = json_read(active_dir, 'dependencies')
+        preset_deps = json_read(data, active_dir, 'dependencies')
         #with open(f"{active_dir}/{data['dependencies']}") as dependencies:
         #    preset_deps = dependencies.read()
-        preset_odeps = json_read(active_dir, 'preset_packages')
+        preset_odeps = json_read(data, active_dir, 'opt_dependencies')
         #with open(f"{active_dir}/{data['preset_packages']}") as opt_dependencies:
         #    preset_odeps = opt_dependencies.read()
     # * <-- Set the correct values -->
