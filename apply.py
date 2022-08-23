@@ -127,6 +127,11 @@ def backup_if_exists(target_path):
     ], shell=True)
 
 
+def json_read(_active_dir: str, _data_type: str):
+    with open(f"{_active_dir}/{data[_data_type]}") as content:
+        return content.read()
+
+
 def symlink(source_path, target_path, colors):
     parent_dir = ''.join(target_path.rpartition("/")[0:1])
     # Create the folder if the parent directory does not exist
@@ -183,13 +188,16 @@ def main(active_dir, preset, colors, skip=False):
     # * <-- Read details.json and other files contained in the presets -->
     with open(f"{active_dir}/{preset}/details.json", "r") as content:
         data = json.loads(content.read())
-        with open(f"{active_dir}/{data['preset_header']}") as header:
-            preset_logo = header.read()
+        preset_logo = json_read(active_dir, 'preset_header')
+        #with open(f"{active_dir}/{data['preset_header']}") as header:
+        #    preset_logo = header.read()
         # TODO: Add parser for repo and aur dependencies and optional deps.
-        with open(f"{active_dir}/{data['dependencies']}") as dependencies:
-            preset_deps = dependencies.read()
-        with open(f"{active_dir}/{data['preset_packages']}") as opt_dependencies:
-            preset_odeps = opt_dependencies.read()
+        preset_deps = json_read(active_dir, 'dependencies')
+        #with open(f"{active_dir}/{data['dependencies']}") as dependencies:
+        #    preset_deps = dependencies.read()
+        preset_odeps = json_read(active_dir, 'preset_packages')
+        #with open(f"{active_dir}/{data['preset_packages']}") as opt_dependencies:
+        #    preset_odeps = opt_dependencies.read()
     # * <-- Set the correct values -->
     print(
         f"Applying preset\n{colors['BLU']}{preset_logo}{colors['RESET']}",
