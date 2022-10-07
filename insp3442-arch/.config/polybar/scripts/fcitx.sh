@@ -7,7 +7,7 @@
 
 ###--- DBUS ---###
 # Get the name of the dbus service
-fcitx_status=$(qdbus | egrep "^ org.fcitx.Fcitx(5|)$")
+fcitx_status=$(qdbus | grep -E "^ org.fcitx.Fcitx(5|)$")
 
 ###--- MAIN ---###
 # If FCITX4:

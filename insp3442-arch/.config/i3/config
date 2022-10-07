@@ -14,6 +14,7 @@ exec --no-startup-id nm-applet &
 exec --no-startup-id xpad --no-new --hide &
 exec --no-startup-id thunar --daemon &
 exec --no-startup-id mpd &
+#exec --no-startup-id picom --experimental-backends
 exec_always --no-startup-id ~/.config/picom/picom.sh &
 exec_always --no-startup-id ~/.config/i3/scripts/fix-sensitivity &
 exec_always --no-startup-id ~/.config/polybar/polybar-i3.sh &
@@ -87,6 +88,8 @@ for_window [class="Zenity"] floating enable, $border_size
 for_window [class="Nm-connection-editor"] floating enable
 for_window [class="TelegramDesktop"] floating enable, $border_size, sticky enable
 for_window [class="Gufw.py"] floating enable
+for_window [class="Microsoft Teams - Preview"] $border_size
+for_window [title="Microsoft Teams Notification"] floating enable, sticky enable
 
 # Workspace 1 - Browsers
 assign [class="librewolf"] $ws01
@@ -259,6 +262,9 @@ bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 bindsym $super+XF86AudioRaiseVolume exec --no-startup-id mpc volume +5
 bindsym $super+XF86AudioLowerVolume exec --no-startup-id mpc volume -5
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl s 5%+
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl s 5%-
+
 # Special Keys
 bindsym XF86HomePage exec --no-startup-id firefox
 bindsym Shift+XF86HomePage exec --no-startup-id firefox --private-window
