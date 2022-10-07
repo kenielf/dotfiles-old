@@ -3,8 +3,9 @@
     "name": "insp3442-arch",
     "description": "A nord themed arch linux install with focus on tiling WMs",
     "preset_root": "/insp3442-arch",
-    "preset_packages": "/insp3442-arch/packages.txt",
     "preset_header": "/insp3442-arch/header.txt",
+    "dependencies": "/insp3442-arch/packages.txt",
+    "opt_dependencies": "/insp3442-arch/opt-packages.txt",
     "file_actions": {
         "symlink":
         [
