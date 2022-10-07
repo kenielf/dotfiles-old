@@ -11,5 +11,4 @@ killall -q picom
 while pgrep -x picom >/dev/null; do sleep 1; done
 
 # Launch polybar
-picom --experimental-backends &
-
+picom --config $HOME/.config/picom/picom.conf --experimental-backends &

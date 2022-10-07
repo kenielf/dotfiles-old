@@ -83,7 +83,7 @@ highlight Normal ctermfg=white ctermbg=black
 autocmd ColorScheme * highlight CursorLineNr cterm=bold term=bold gui=bold
 
 " <-- COC -->
-" CocInstall coc-json coc-tsserver coc-pyright
+" CocInstall coc-json coc-tsserver coc-pyright coc-clangd
 " Tweaks
 highlight CocNotificationProgress guibg=#4c566a guifg=#5e81ac
 highlight CocNotificationButton guibg=#4c566a guifg=#5e81ac

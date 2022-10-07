@@ -49,20 +49,10 @@ confirm() {
 chosen="$(echo -e $(echo -e $options | $rofi_cmd) | sed -E "$sed_xpr")"
 case $chosen in
 	$pwr_lbl)
-		ans=$(confirm &)
-		if [[ "$ans" == "yes" || "$ans" == "Yes" || "$ans" == "YES" || "$ans" == "y" || "$ans" == "Y" ]]; then 
-			pkexec systemctl poweroff
-		elif [[ "$ans" == "no" || "$ans" == "No" || "$ans" == "NO" || "$ans" == "n" || "$ans" == "N" || "$ans" == "" ]]; then
-			exit 0
-		fi
+		pkexec systemctl poweroff
 	;;
 	$rbt_lbl)
-		ans=$(confirm &)
-		if [[ "$ans" == "yes" || "$ans" == "Yes" || "$ans" == "YES" || "$ans" == "y" || "$ans" == "Y" ]]; then 
-			pkexec systemctl reboot
-		elif [[ "$ans" == "no" || "$ans" == "No" || "$ans" == "NO" || "$ans" == "n" || "$ans" == "N" || "$ans" == "" ]]; then
-			exit 0
-		fi
+		pkexec systemctl reboot
 	;;
 	$lck_lbl)
         if [ -f "/usr/bin/betterlockscreen" ]; then
@@ -72,23 +62,13 @@ case $chosen in
         fi
 	;;
 	$spd_lbl)
-		ans=$(confirm &)
-		if [[ "$ans" == "yes" || "$ans" == "Yes" || "$ans" == "YES" || "$ans" == "y" || "$ans" == "Y" ]]; then 
-			pkexec systemctl suspend
-		elif [[ "$ans" == "no" || "$ans" == "No" || "$ans" == "NO" || "$ans" == "n" || "$ans" == "N" || "$ans" == "" ]]; then
-			exit 0
-		fi
+		pkexec systemctl suspend
 	;;
 	$lgo_lbl)
-		ans=$(confirm &)
-		if [[ "$ans" == "yes" || "$ans" == "Yes" || "$ans" == "YES" || "$ans" == "y" || "$ans" == "Y" ]]; then 
-			if [ "$DESKTOP_SESSION" == "bspwm" ]; then
-				bspc quit
-			elif [ "$DESKTOP_SESSION" == "i3" ];then
-				i3-msg exit
-			fi
-		elif [[ "$ans" == "no" || "$ans" == "No" || "$ans" == "NO" || "$ans" == "n" || "$ans" == "N" || "$ans" == "" ]]; then
-			exit 0
+		if [ "$DESKTOP_SESSION" == "bspwm" ]; then
+			bspc quit
+		elif [ "$DESKTOP_SESSION" == "i3" ];then
+			i3-msg exit
 		fi
 	;;
 esac

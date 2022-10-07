@@ -87,6 +87,19 @@ alias xzd="xz -devT0"
 # Display
 alias fix-display='xrandr --output "$(xrandr | grep -oP "^([\w\-]+)(?=\sconnected\sprimary)")" --set "scaling mode" "Full" --mode $(xrandr | grep -oP "(?<=^\s{3})(\d+x\d+)" | head -n1)'
 alias toggle-compositor='if [ $(pgrep -x "picom") ]; then killall -s15 picom; else setsid -f $HOME/.config/picom/picom.sh &>/dev/null; fi'
+alias screensave="while true; do sleep 1; xset dpms force off; done"
 
 # Audio
 alias toggle-loopback='if [ $(pgrep -x "pw-loopback") ]; then killall -s15 pw-loopback; else setsid -f pw-loopback; fi'
+
+# University
+alias unicd="cd ~/University"
+alias unira="cat ~/.pass/fatec-ra.txt | sclip"
+alias unicourses="cat ~/University/SEMESTER-1/courses.txt"
+alias ccmp="for file in \$(ls | grep -P \".c$\"); do echo \"\$file\" && gcc \"\$file\" -o \"\$(echo \$file | sed -e 's/.c//g')\" -O2 -lm -Wall; done"
+alias crun="file=\"./\$(ls | grep -E '.c$' | sed -e 's/\.c//g' | fzf --reverse --header 'Select C program to run:' --preview \"echo -e '\x1b[31m{1}.c\x1b[0m\n--------------------' && bat -p --color=always {1}.c\" +m --padding 1% --info=inline --border --preview-window=down,70%,wrap,border-top,+{2}+3/3,~1)\"; [ \"\$file\" != \"./\" ] && sh -c \"\$file\""
+
+alias mirror-screen="xrandr --output HDMI-1 --fb 1920x1080 --mode 1920x1080 --scale-from 1366x768 --scale 1x1 --same-as eDP-1"
+
+# Extra
+alias today="date +'%Y-%m-%d'"

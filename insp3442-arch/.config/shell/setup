@@ -20,6 +20,7 @@ export USR_SHELL="$(ps -p $$ | awk '{print $4}' | tail -n+2)"
 
 # Editor
 export EDITOR=nvim
+export VISUAL=nvim
 
 # .NET telemetry opt out
 export DOTNET_CLI_TELEMETRY_OPTOUT=1

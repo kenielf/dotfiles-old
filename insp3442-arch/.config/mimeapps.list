@@ -1,6 +1,6 @@
 [Added Associations]
 text/plain=mpv.desktop;org.cvfosammmm.Setzer.desktop;org.xfce.mousepad.desktop;
-x-scheme-handler/tg=userapp-Telegram Desktop-JYWAN1.desktop;
+x-scheme-handler/tg=userapp-Telegram Desktop-JYWAN1.desktop;userapp-Telegram Desktop-MJ23N1.desktop;
 audio/x-aiff=mpv.desktop;
 audio/flac=mpv.desktop;
 audio/x-ms-wma=mpv.desktop;
@@ -29,9 +29,10 @@ video/x-ms-wmv=mpv.desktop;
 application/x-ms-dos-executable=wine.desktop;
 application/x-wine-extension-ini=org.xfce.mousepad.desktop;
 video/mp4=vlc.desktop;
-application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;
+application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;org.pwmt.zathura-pdf-poppler.desktop;
 application/x-shellscript=org.xfce.mousepad.desktop;
 application/x-bittorrent=org.qbittorrent.qBittorrent.desktop;
+application/json=org.xfce.mousepad.desktop;
 
 [Default Applications]
 text/html=librewolf.desktop
@@ -39,7 +40,7 @@ x-scheme-handler/http=librewolf.desktop
 x-scheme-handler/https=librewolf.desktop
 x-scheme-handler/about=librewolf.desktop
 x-scheme-handler/unknown=librewolf.desktop
-x-scheme-handler/tg=userapp-Telegram Desktop-JYWAN1.desktop
+x-scheme-handler/tg=userapp-Telegram Desktop-MJ23N1.desktop
 audio/x-aiff=mpv.desktop
 audio/flac=mpv.desktop
 audio/mp4=mpv.desktop
@@ -70,5 +71,6 @@ video/x-ms-wmv=mpv.desktop
 text/plain=org.xfce.mousepad.desktop
 application/x-ms-dos-executable=wine.desktop
 application/x-wine-extension-ini=org.xfce.mousepad.desktop
-application/pdf=org.pwmt.zathura-pdf-mupdf.desktop;
+application/pdf=org.pwmt.zathura-pdf-poppler.desktop
 application/x-bittorrent=org.qbittorrent.qBittorrent.desktop
+x-scheme-handler/msteams=teams.desktop

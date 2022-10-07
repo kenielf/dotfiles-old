@@ -25,12 +25,13 @@
 	"sudoflags": "",
 	"requestsplitn": 150,
 	"completionrefreshtime": 7,
+	"maxconcurrentdownloads": 0,
 	"bottomup": true,
 	"sudoloop": true,
 	"timeupdate": false,
 	"devel": false,
 	"cleanAfter": false,
-	"provides": true,
+	"provides": false,
 	"pgpfetch": true,
 	"upgrademenu": true,
 	"cleanmenu": true,
@@ -41,5 +42,5 @@
 	"batchinstall": false,
 	"singlelineresults": false,
 	"separatesources": false,
-	"version": "11.1.2.r13.g4ca50e5"
+	"version": "11.3.0.r3.gb882faf"
 }
